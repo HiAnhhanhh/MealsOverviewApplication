@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:layout_marginBottom="15dp"
+    app:layout_constraintWidth_default="spread"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imvDailyMeal"
+        style="@style/rounded_corner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/item_image"
+        app:shapeAppearanceOverlay="@style/rounded_corner"
+        app:layout_constraintHeight_percent="1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".3" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/home_made_pizza"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imvDailyMeal"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:text="@string/_45m"
+        android:textSize="15sp"
+        app:drawableStartCompat="@drawable/baseline_access_time_24"
+        app:layout_constraintStart_toEndOf="@+id/imvDailyMeal"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/baseline_favorite_border_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".08" />
+
+    <TextView
+        android:id="@+id/tvDes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:maxLines="4"
+        android:text="@string/this_is_a_classic_homemade_pizza_recipe_including"
+        android:textSize="12sp"
+        app:layout_constraintHeight_percent=".55"
+        app:layout_constraintStart_toEndOf="@+id/imvDailyMeal"
+        app:layout_constraintTop_toBottomOf="@+id/tvTime"
+        app:layout_constraintWidth_percent=".66" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

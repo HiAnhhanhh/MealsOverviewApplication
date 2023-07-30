@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/dailyMealsFragment">
+
+    <fragment
+        android:id="@+id/dailyMealsFragment"
+        android:name="com.example.mealsoverviewapplication.DailyMealsFragment"
+        android:label="fragment_daily_meals"
+        tools:layout="@layout/fragment_daily_meals" />
+    <fragment
+        android:id="@+id/favoriteListMealsFragment"
+        android:name="com.example.mealsoverviewapplication.FavoriteListMealsFragment"
+        android:label="fragment_favorite_list_meals"
+        tools:layout="@layout/fragment_favorite_list_meals" >
+        <action
+            android:id="@+id/action_favoriteListMealsFragment_to_viewDetailOfMealFragment"
+            app:destination="@id/viewDetailOfMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.mealsoverviewapplication.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/viewDetailOfMealFragment"
+        android:name="com.example.mealsoverviewapplication.ViewDetailOfMealFragment"
+        android:label="fragment_view_detail_of_meal"
+        tools:layout="@layout/fragment_view_detail_of_meal" />
+</navigation>

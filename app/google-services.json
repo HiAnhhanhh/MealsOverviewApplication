@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "129056234520",
+    "firebase_url": "https://meals-overview-application-default-rtdb.firebaseio.com",
+    "project_id": "meals-overview-application",
+    "storage_bucket": "meals-overview-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129056234520:android:ab3ce1a155bdca1251376d",
+        "android_client_info": {
+          "package_name": "com.example.mealsoverviewapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129056234520-ocq1ducc3bokmh9qc1mgg44kbrigkems.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqTWUCnlWo9g5666bJBW9gKcxion0d8mE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129056234520-ocq1ducc3bokmh9qc1mgg44kbrigkems.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MealsOverviewApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="daily_recipe_for_you">Daily Recipe For You</string>
+    <string name="monday_april_18_2022">Monday - April 18, 2022</string>
+    <string name="eggs_benedict">Eggs Benedict</string>
+    <string name="make_it_now">Make it Now!</string>
+    <string name="recent_meals">Recent Meals</string>
+    <string name="home_made_pizza">Home Made Pizza</string>
+    <string name="_45m">45m</string>
+    <string name="this_is_a_classic_homemade_pizza_recipe_including">This is a classic homemade pizza recipe ,including ....</string>
+    <string name="see_all">see all</string>
+    <string name="home">Home</string>
+    <string name="saved">Saved</string>
+    <string name="profile">Profile</string>
+    <string name="_25m">25m</string>
+    <string name="menu_icon">menu icon</string>
+    <string name="search">search</string>
+    <string name="menu_logo">menu logo</string>
+    <string name="by_gordon_ramsay">By Gordon Ramsay</string>
+    <string name="add_to_my_list">Add to my list</string>
+    <string name="_105">105</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="butter">Butter</string>
+    <string name="_3_tbsp">3 tbsp</string>
+    <string name="for_the_hollandaise_sauce">For the hollandaise sauce</string>
+    <string name="list_meals">List Meals</string>
+</resources>
