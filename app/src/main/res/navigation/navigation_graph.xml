@@ -9,15 +9,16 @@
         android:id="@+id/dailyMealsFragment"
         android:name="com.example.mealsoverviewapplication.DailyMealsFragment"
         android:label="fragment_daily_meals"
-        tools:layout="@layout/fragment_daily_meals" />
+        tools:layout="@layout/fragment_daily_meals" >
+        <action
+            android:id="@+id/dailyMealsFragmentActionToViewDetailFragment"
+            app:destination="@id/viewDetailOfMealFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteListMealsFragment"
         android:name="com.example.mealsoverviewapplication.FavoriteListMealsFragment"
         android:label="fragment_favorite_list_meals"
         tools:layout="@layout/fragment_favorite_list_meals" >
-        <action
-            android:id="@+id/action_favoriteListMealsFragment_to_viewDetailOfMealFragment"
-            app:destination="@id/viewDetailOfMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -28,5 +29,12 @@
         android:id="@+id/viewDetailOfMealFragment"
         android:name="com.example.mealsoverviewapplication.ViewDetailOfMealFragment"
         android:label="fragment_view_detail_of_meal"
-        tools:layout="@layout/fragment_view_detail_of_meal" />
+        tools:layout="@layout/fragment_view_detail_of_meal" >
+        <action
+            android:id="@+id/viewDetailOfMealFragmentActionToDailyMealsFragment"
+            app:destination="@id/dailyMealsFragment" />
+        <argument
+            android:name="mealDetail"
+            app:argType="com.example.mealsoverviewapplication.models.MealDetail"/>
+    </fragment>
 </navigation>

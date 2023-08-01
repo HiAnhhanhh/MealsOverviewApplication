@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.adapters.DailyMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentDailyMealsBinding
 import com.example.mealsoverviewapplication.models.Category
+import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.DailyMealsViewModel
-import com.example.mealsoverviewapplication.viewmodels.RandomMealsViewModel
-import kotlin.math.log
 
 class DailyMealsFragment : Fragment() {
 
@@ -38,25 +38,29 @@ class DailyMealsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initRecyclerView()
-
-        dailyMealsViewModel = ViewModelProvider(this)[DailyMealsViewModel::class.java]
-        dailyMealsViewModel.getCategory()
-        dailyMealsViewModel.responseLiveData.observe(this, Observer{
-            _dailyMealsAdapter.setData(it as ArrayList<Category>)
-            Log.d("check_data", "onViewCreated: 12"+ it)
+        initData()
+        goToViewDetail()
+    }
+    private fun goToViewDetail() {
+        _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val title = _dailyMealsAdapter._dailyMealsArrayList[position].strCategory.toString()
+                val thumb = _dailyMealsAdapter._dailyMealsArrayList[position].strCategoryThumb.toString()
+                val description = _dailyMealsAdapter._dailyMealsArrayList[position].strCategoryDescription.toString()
+                val mealDetail = MealDetail (title, thumb, description)
+                val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToViewDetailFragment(mealDetail)
+                findNavController().navigate(direction)
+            }
         })
     }
 
-    private fun initAction() {
-
-    }
-
     private fun initData() {
-
-    }
-
-    private fun observeData() {
-
+        dailyMealsViewModel = ViewModelProvider(this)[DailyMealsViewModel::class.java]
+        dailyMealsViewModel.getCategory()
+        dailyMealsViewModel.responseLiveData.observe(viewLifecycleOwner, Observer{
+            _dailyMealsAdapter.setData(it as ArrayList<Category>)
+            Log.d("check_data", "onViewCreated: 12"+ it)
+        })
     }
 
     private fun initRecyclerView() {

@@ -26,4 +26,8 @@
     <string name="_3_tbsp">3 tbsp</string>
     <string name="for_the_hollandaise_sauce">For the hollandaise sauce</string>
     <string name="list_meals">List Meals</string>
+    <string name="fragment_favorite_list_meals">fragment_favorite_list_meals</string>
+    <string name="fragment_profile">fragment_profile</string>
+    <string name="fragment_daily_meals">fragment_daily_meals</string>
+    <string name="image_thumb">Image Thumb</string>
 </resources>

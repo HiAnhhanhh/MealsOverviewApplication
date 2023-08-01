@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/home"
-        android:enabled="true"
-        android:id="@+id/home"
+        android:label="@string/fragment_daily_meals"
+        android:id="@+id/dailyMealsFragment"
         android:icon="@drawable/home_icon"/>
     <item android:title="@string/saved"
-        android:id="@+id/saved"
+        android:label="@string/fragment_favorite_list_meals"
+        android:id="@+id/favoriteListMealsFragment"
         android:icon="@drawable/favourite_icon"/>
     <item android:title="@string/profile"
-        android:id="@+id/profile"
+        android:label="@string/fragment_profile"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/profile_icon"/>
 </menu>

@@ -3,7 +3,6 @@ package com.example.mealsoverviewapplication.apis
 
 import com.example.mealsoverviewapplication.models.Categories
 import com.example.mealsoverviewapplication.models.Category
-import com.example.mealsoverviewapplication.models.Post
 import com.example.mealsoverviewapplication.models.RandomMeals
 import retrofit2.http.GET
 

@@ -28,7 +28,6 @@ class DailyMealsViewModel (): ViewModel() {
                 }
         }
     }
-
     fun checkCategoryType(type: String): CategoryTypes {
         return when(type) {
             "pho" -> CategoryTypes.PHO
