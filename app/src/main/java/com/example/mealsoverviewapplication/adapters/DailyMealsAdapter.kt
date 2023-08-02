@@ -1,24 +1,23 @@
 package com.example.mealsoverviewapplication.adapters
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.models.Category
+import com.example.mealsoverviewapplication.models.MealDetail
 
 
-class DailyMealsAdapter() : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
+class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
     val _dailyMealsArrayList: ArrayList<Category> = arrayListOf()
-
     private lateinit var mlistener : onItemClickListener
     interface onItemClickListener {
         fun onItemClick (position: Int)
     }
-
     fun setOnItemClickListener(listener: onItemClickListener){
         mlistener = listener
     }
@@ -26,6 +25,10 @@ class DailyMealsAdapter() : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>()
         _dailyMealsArrayList.clear()
         _dailyMealsArrayList.addAll(data)
         notifyDataSetChanged()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
     }
 
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -36,6 +39,9 @@ class DailyMealsAdapter() : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>()
 
             binding.root.setOnClickListener {
                 listener.onItemClick(position)
+            }
+            binding.imgFavorite.setOnClickListener {
+                binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_red_24)
             }
         }
     }

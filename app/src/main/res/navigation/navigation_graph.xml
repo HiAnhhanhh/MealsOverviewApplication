@@ -13,12 +13,16 @@
         <action
             android:id="@+id/dailyMealsFragmentActionToViewDetailFragment"
             app:destination="@id/viewDetailOfMealFragment" />
+
+        <action
+            android:id="@+id/dailyMealsFragmentActionToSearchMealFragment"
+            app:destination="@+id/searchMealsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/favoriteListMealsFragment"
-        android:name="com.example.mealsoverviewapplication.FavoriteListMealsFragment"
+        android:name="com.example.mealsoverviewapplication.FavouriteListMealsFragment"
         android:label="fragment_favorite_list_meals"
-        tools:layout="@layout/fragment_favorite_list_meals" >
+        tools:layout="@layout/fragment_favourite_list_meals" >
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -37,4 +41,9 @@
             android:name="mealDetail"
             app:argType="com.example.mealsoverviewapplication.models.MealDetail"/>
     </fragment>
+    <fragment
+        android:id="@+id/searchMealsFragment"
+        android:name="com.example.mealsoverviewapplication.SearchMealsFragment"
+        android:label="fragment_search_meals"
+        tools:layout="@layout/fragment_search_meals" />
 </navigation>

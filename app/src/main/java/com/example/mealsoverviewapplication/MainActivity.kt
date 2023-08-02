@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -22,7 +21,9 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bottomNavigationView.isVisible = destination.id != R.id.viewDetailOfMealFragment
+            if(destination.id == R.id.searchMealsFragment) {
+                binding.bottomNavigationView.isVisible = false
+            } else binding.bottomNavigationView.isVisible = destination.id != R.id.viewDetailOfMealFragment
         }
     }
 }

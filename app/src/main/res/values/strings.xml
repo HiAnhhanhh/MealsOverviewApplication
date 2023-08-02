@@ -30,4 +30,6 @@
     <string name="fragment_profile">fragment_profile</string>
     <string name="fragment_daily_meals">fragment_daily_meals</string>
     <string name="image_thumb">Image Thumb</string>
+    <string name="search_1">Search ...</string>
+    <string name="how_to_make">How To Make</string>
 </resources>

@@ -5,24 +5,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mealsoverviewapplication.models.Meal
-import com.example.mealsoverviewapplication.repository.RandomMealsRepository
+import com.example.mealsoverviewapplication.repository.MealIngredientsRepository
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-
-class RandomMealsViewModel : ViewModel() {
-
+class MealIngredientsRepositoryViewModel : ViewModel() {
     val responseLiveData : MutableLiveData<List<Meal>?> = MutableLiveData()
 
-    fun getMeal() {
+    fun getMealIngredients () {
         viewModelScope.launch {
-            RandomMealsRepository.getRandomMeals()
+            MealIngredientsRepository.getRandomMeals()
                 .catch { e ->
-                    Log.d("check_data", "getMeal: ${e.message} ")
+                    Log.d("check_data_1", "getMealIngredients 1: ${e.message}")
                 }
-                .collect { response ->
-                    responseLiveData.value= response.meals as List<Meal>?
+                .collect { data ->
+                    responseLiveData.value = data.meals
                 }
         }
     }

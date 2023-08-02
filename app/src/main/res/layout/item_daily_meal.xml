@@ -46,6 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
     <ImageView
+        android:id="@+id/imgFavorite"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/baseline_favorite_border_24"

@@ -121,9 +121,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias=".25"
-        app:layout_constraintVertical_bias=".02"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgThumb" />
+        app:layout_constraintTop_toBottomOf="@+id/imgThumb"
+        app:layout_constraintVertical_bias=".02" />
 
     <TextView
         android:id="@+id/tvAddedToMyList"
@@ -158,67 +158,197 @@
         app:layout_constraintTop_toBottomOf="@+id/imgThumb"
         app:layout_constraintVertical_bias=".02" />
 
-    <TextView
-        android:id="@+id/tvIngredients"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
-        android:gravity="center"
-        android:text="@string/ingredients"
-        android:textSize="22sp"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintHorizontal_bias=".15"
-        app:drawableStartCompat="@drawable/chef_icon_3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
     <androidx.core.widget.NestedScrollView
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvIngredients" >
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="25dp"
-                android:paddingEnd="20dp"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_checkbox" />
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
-                android:id="@+id/tvSauce"
+                android:id="@+id/tvIngredients"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/for_the_hollandaise_sauce"
-                android:paddingStart="25dp"
-                android:layout_margin="5dp"
-                tools:ignore="RtlSymmetry" />
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="@string/ingredients"
+                android:textSize="22sp"
+                app:drawableStartCompat="@drawable/chef_icon_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:layout_constraintVertical_bias=".05" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="25dp"
-                android:paddingEnd="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_checkbox" />
+                android:orientation="horizontal">
 
+                <CheckBox
+                    android:id="@+id/checkbox1"
+                    style="@style/CustomCheckbox02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvIngredient1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/butter"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/tvMeasure1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_3_tbsp"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox2"
+                    style="@style/CustomCheckbox02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvIngredient2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/butter"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/tvMeasure2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_3_tbsp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox3"
+                    style="@style/CustomCheckbox02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvIngredient3"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/butter"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/tvMeasure3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_3_tbsp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox4"
+                    style="@style/CustomCheckbox02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvIngredient4"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/butter"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/tvMeasure4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_3_tbsp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/checkbox5"
+                    style="@style/CustomCheckbox02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvIngredient5"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/butter"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/tvMeasure5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_3_tbsp"/>
+
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvHowToMake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:text="@string/how_to_make"
+                android:textSize="22sp"
+                app:drawableStartCompat="@drawable/chef_icon_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias=".15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:layout_constraintVertical_bias=".05" />
+
+            <TextView
+                android:id="@+id/tvStep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"/>
         </LinearLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 

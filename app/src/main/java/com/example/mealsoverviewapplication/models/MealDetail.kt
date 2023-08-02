@@ -7,5 +7,5 @@ import kotlinx.parcelize.Parcelize
 data class MealDetail(
     val strCategory: String = "",
     val strCategoryThumb: String = "",
-    val description: String
+    val description: String =""
 ): Parcelable

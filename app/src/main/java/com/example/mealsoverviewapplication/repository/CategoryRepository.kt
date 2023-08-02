@@ -16,6 +16,7 @@ class CategoryRepository {
             val response =  RetrofitBuilder.api.getCategories()
             emit(response)
         }.flowOn(Dispatchers.IO)
+
     }
 }
 

@@ -15,6 +15,7 @@ import com.example.mealsoverviewapplication.databinding.FragmentDailyMealsBindin
 import com.example.mealsoverviewapplication.models.Category
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.DailyMealsViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DailyMealsFragment : Fragment() {
 
@@ -36,6 +37,10 @@ class DailyMealsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.imvSearch.setOnClickListener {
+            findNavController().navigate(R.id.dailyMealsFragmentActionToSearchMealFragment)
+        }
 
         initRecyclerView()
         initData()
