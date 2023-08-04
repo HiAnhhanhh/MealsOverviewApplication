@@ -2,27 +2,24 @@ package com.example.mealsoverviewapplication.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.models.MealDetail
 
-class FavouriteMealsAdapter () : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHolder>() {
+class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHolder>() {
 
-    val _favouriteMealsArrayList: ArrayList<MealDetail> = arrayListOf()
+     val _favouriteMealsArrayList: ArrayList<MealDetail> = arrayListOf()
 
     fun setData(data: ArrayList<MealDetail>){
         _favouriteMealsArrayList.clear()
         _favouriteMealsArrayList.addAll(data)
         notifyDataSetChanged()
     }
-
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind (data: MealDetail, position: Int){
+        fun bind (data: MealDetail){
             binding.tvTitle.text = data.strCategory
             binding.tvDes.text = data.description
             Glide.with(binding.imvDailyMeal).load(data.strCategoryThumb).into(binding.imvDailyMeal)
@@ -42,7 +39,7 @@ class FavouriteMealsAdapter () : RecyclerView.Adapter<FavouriteMealsAdapter.View
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favouriteMeal = _favouriteMealsArrayList[position]
-        holder.bind(favouriteMeal, position)
+        holder.bind(favouriteMeal)
     }
 }
 

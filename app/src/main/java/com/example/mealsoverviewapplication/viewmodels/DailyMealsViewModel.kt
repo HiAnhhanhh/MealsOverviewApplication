@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 
-class DailyMealsViewModel (): ViewModel() {
+class DailyMealsViewModel : ViewModel() {
     val responseLiveData : MutableLiveData<List<Category>?> = MutableLiveData()
 
     fun getCategory () {

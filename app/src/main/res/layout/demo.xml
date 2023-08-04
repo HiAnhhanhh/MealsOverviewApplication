@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:contentDescription="@string/search"
-            android:src="@drawable/baseline_search_24" />
+            android:src="@drawable/baseline_search_12" />
 
     </RelativeLayout>
 

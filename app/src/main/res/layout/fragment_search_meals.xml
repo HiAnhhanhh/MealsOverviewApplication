@@ -8,28 +8,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SearchMealsFragment">
 
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
+    <EditText
+        android:id="@+id/searchViewFilterMeal"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent=".08"
-        android:padding="4dp"
-        app:iconifiedByDefault="false"
-        app:queryHint="@string/search_1"
-        android:background="@color/white"
-        app:queryBackground="@color/transparent"
+        android:layout_height="60dp"
+        android:background="@drawable/background_search"
+        android:drawableStart="@drawable/baseline_search_12"
+        android:hint="@string/search_1"
+        android:padding="10dp"
+        android:inputType="text"
+        android:drawablePadding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewFilterMeal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

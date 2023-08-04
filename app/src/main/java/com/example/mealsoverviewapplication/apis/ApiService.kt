@@ -1,20 +1,24 @@
 package com.example.mealsoverviewapplication.apis
 
 
-import com.example.mealsoverviewapplication.models.Categories
-import com.example.mealsoverviewapplication.models.Category
-import com.example.mealsoverviewapplication.models.Meal
-import com.example.mealsoverviewapplication.models.RandomMeals
+import android.text.Editable
+import com.example.mealsoverviewapplication.models.*
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface ApiService {
-//    @GET("categories.php")
-//    fun getCategory() : List<Category>
 
     @GET("categories.php")
     suspend fun getCategories (): Categories
 
     @GET("random.php")
-    suspend fun getRandomMeals (): RandomMeals
+    suspend fun getRandomMeals (): RandomMeal
+
+    @GET("search.php")
+    suspend fun getFilterMeals (@Query("f") letter: Editable?) : ListFilterMeals
+
+    @GET("random.php")
+    suspend fun getRandomMeal() : RandomMeal
+
 }

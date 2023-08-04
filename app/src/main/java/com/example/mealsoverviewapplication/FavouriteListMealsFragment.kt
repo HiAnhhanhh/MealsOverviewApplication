@@ -24,7 +24,7 @@ class FavouriteListMealsFragment : Fragment() {
         FavouriteMealsAdapter()
     }
 
-    lateinit var favouriteListMeals: ArrayList<MealDetail>
+    private var favouriteListMeals: ArrayList<MealDetail> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,20 +36,25 @@ class FavouriteListMealsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        favouriteListMeals = arrayListOf()
+        initData()
+        initView()
+        initAction()
+
+    }
+
+    private fun initAction() {
         binding.imgBackBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-        favouriteListMeals = arrayListOf()
-        getFavouritesList()
     }
 
-    private fun initRec() {
+    private fun initView() {
         binding.favoriteRec.layoutManager = LinearLayoutManager(context)
         binding.favoriteRec.adapter = _favouriteAdapter
     }
 
-    private fun getFavouritesList() {
+
+    private fun initData() {
         Log.d("check_fvlist", "getFavouritesList: ")
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
         ref.addValueEventListener(object :ValueEventListener{
@@ -64,7 +69,6 @@ class FavouriteListMealsFragment : Fragment() {
                     }
                     _favouriteAdapter.setData(favouriteListMeals)
                     Log.d("check_fvlist", "onDataChange: "+ favouriteListMeals)
-                    initRec()
                 }
             }
             override fun onCancelled(error: DatabaseError) {

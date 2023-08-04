@@ -45,5 +45,9 @@
         android:id="@+id/searchMealsFragment"
         android:name="com.example.mealsoverviewapplication.SearchMealsFragment"
         android:label="fragment_search_meals"
-        tools:layout="@layout/fragment_search_meals" />
+        tools:layout="@layout/fragment_search_meals" >
+        <action
+            android:id="@+id/searchMealsFragmentActionToViewDetailOfMealFragment"
+            app:destination="@id/viewDetailOfMealFragment" />
+    </fragment>
 </navigation>

@@ -1,6 +1,5 @@
 package com.example.mealsoverviewapplication.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.models.Category
-import com.example.mealsoverviewapplication.models.MealDetail
 
 
 class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
@@ -21,14 +19,11 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
     fun setOnItemClickListener(listener: onItemClickListener){
         mlistener = listener
     }
+
     fun setData (data: ArrayList<Category>) {
         _dailyMealsArrayList.clear()
         _dailyMealsArrayList.addAll(data)
         notifyDataSetChanged()
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
     }
 
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -58,6 +53,5 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dailyModel = _dailyMealsArrayList[position]
         holder.bindViewHolder(dailyModel,position,mlistener)
-        Log.d("check_rec", "onBindViewHolder: "+ _dailyMealsArrayList.size)
     }
 }
