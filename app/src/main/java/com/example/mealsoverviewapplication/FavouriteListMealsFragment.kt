@@ -69,6 +69,7 @@ class FavouriteListMealsFragment : Fragment() {
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
         ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                favouriteListMeals.clear()
                 if (snapshot.exists()){
                     for (favouriteSnapshot in snapshot.children){
                         val favouriteModel: MealDetail? = favouriteSnapshot.getValue(MealDetail::class.java)
