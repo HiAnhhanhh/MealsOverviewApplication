@@ -11,7 +11,16 @@ import com.example.mealsoverviewapplication.models.MealDetail
 
 class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHolder>() {
 
-     val _favouriteMealsArrayList: ArrayList<MealDetail> = arrayListOf()
+    val _favouriteMealsArrayList: ArrayList<MealDetail> = arrayListOf()
+    private lateinit var mlistener : FavouriteMealsAdapter.onItemClickListener
+
+    interface onItemClickListener {
+        fun onItemClick (position: Int)
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener){
+        mlistener = listener
+    }
 
     fun setData(data: ArrayList<MealDetail>){
         _favouriteMealsArrayList.clear()
@@ -19,12 +28,15 @@ class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHo
         notifyDataSetChanged()
     }
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind (data: MealDetail){
+        fun bind (data: MealDetail, position: Int, listener: onItemClickListener){
             binding.tvTitle.text = data.strCategory
             binding.tvDes.text = data.description
             Glide.with(binding.imvDailyMeal).load(data.strCategoryThumb).into(binding.imvDailyMeal)
-            Log.d("load_image", "bind: "+ data.strCategoryThumb+ data.strCategory)
+
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_red_24)
+            binding.root.setOnClickListener {
+                listener.onItemClick(position)
+            }
         }
     }
 
@@ -39,7 +51,7 @@ class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHo
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favouriteMeal = _favouriteMealsArrayList[position]
-        holder.bind(favouriteMeal)
+        holder.bind(favouriteMeal,position, mlistener)
     }
 }
 

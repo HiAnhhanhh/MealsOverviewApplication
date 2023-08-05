@@ -19,6 +19,9 @@ import com.example.mealsoverviewapplication.models.Meal
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.DailyMealsViewModel
 import com.example.mealsoverviewapplication.viewmodels.RandomMealViewModel
+import java.text.DateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DailyMealsFragment : Fragment() {
 
@@ -46,6 +49,7 @@ class DailyMealsFragment : Fragment() {
         initAction()
     }
     private fun initAction() {
+
         _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
                 val categoryId = _dailyMealsAdapter._dailyMealsArrayList[position].idCategory.toString()
@@ -94,6 +98,10 @@ class DailyMealsFragment : Fragment() {
         }
     }
     private fun initView() {
+        val calendar: Calendar = Calendar.getInstance()
+        val currentDate : String  = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
+        binding.tvDate.text = currentDate
+
         binding.recDailyMeal.layoutManager = LinearLayoutManager(context)
         binding.recDailyMeal.adapter = _dailyMealsAdapter
 //        val type = dailyMealsViewModel.checkCategoryType("pho")

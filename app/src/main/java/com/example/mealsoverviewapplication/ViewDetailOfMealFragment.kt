@@ -16,14 +16,14 @@ import com.example.mealsoverviewapplication.databinding.FragmentViewDetailOfMeal
 import com.example.mealsoverviewapplication.models.Meal
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.MealIngredientsRepositoryViewModel
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class ViewDetailOfMealFragment : Fragment() {
     private val binding by lazy {
         FragmentViewDetailOfMealBinding.inflate(layoutInflater)
     }
     private val mealIngredientsViewModel by viewModels<MealIngredientsRepositoryViewModel>()
+    var check =""
 
     private var mealIngredients: ArrayList<Meal> = arrayListOf()
     var timeStamp: String = ""
@@ -40,11 +40,31 @@ class ViewDetailOfMealFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initObserver()
+        initCheck()
         initData()
         initView()
         initAction()
 
 
+    }
+
+    private fun initCheck() {
+        val mealDetail = args.mealDetail
+        val categoryId = mealDetail.strCategoryId
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
+        ref.child(categoryId).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val check = snapshot.child("check").value
+                if (check == "true"){
+                    binding.tvAddToMyList.isVisible = false
+                    binding.tvAddedToMyList.isVisible = true
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private fun initView() {
@@ -64,23 +84,30 @@ class ViewDetailOfMealFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        binding.tvAddToMyList.setOnClickListener {
-            it.isVisible = false
+        binding.tvAddToMyList.setOnClickListener { data ->
+            data.isVisible = false
             binding.tvAddedToMyList.isVisible = true
+            check = "true"
             insertData(mealDetail)
         }
 
-        binding.tvAddedToMyList.setOnClickListener {
-            it.isVisible = false
+        binding.tvAddedToMyList.setOnClickListener { data ->
+            data.isVisible = false
             binding.tvAddToMyList.isVisible = true
+            check = "false"
             removeData()
         }
     }
 
     private fun removeData() {
+        val mealDetail = args.mealDetail
+        val categoryId = mealDetail.strCategoryId
+        val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
+        ref.child(categoryId).removeValue()
+            .addOnSuccessListener {
 
+            }
     }
-
     private fun initObserver() {
         mealIngredientsViewModel.getMealIngredients()
         mealIngredientsViewModel.responseLiveData.observe(viewLifecycleOwner, Observer { data ->
@@ -88,10 +115,8 @@ class ViewDetailOfMealFragment : Fragment() {
             getMealIngredients(mealIngredients)
         })
     }
-
     private fun getMealIngredients(mealIngredients: ArrayList<Meal>) {
         val mealIngredient: Meal? = mealIngredients.firstOrNull()
-//        Log.d("check_data_1", "getMealIngredients: "+ mealIngredients)
         binding.tvIngredient1.text = mealIngredient?.strIngredient1
         binding.tvIngredient2.text = mealIngredient?.strIngredient2
         binding.tvIngredient3.text = mealIngredient?.strIngredient3
@@ -106,16 +131,19 @@ class ViewDetailOfMealFragment : Fragment() {
 
     }
 
-
     private fun insertData(mealDetail: MealDetail) {
         timeStamp = System.currentTimeMillis().toString()
-        val categoryId = mealDetail.categoryId.toString()
-        val hashMap: HashMap<String, String> = HashMap()
-        hashMap["strCategoryId"] = mealDetail.categoryId
-        hashMap["strCategory"] = mealDetail.strCategory
-        hashMap["strCategoryThumb"] = mealDetail.strCategoryThumb
-        hashMap["description"] = mealDetail.description
+        val categoryId = mealDetail.strCategoryId
+        val strCategory = mealDetail.strCategory
+        val strCategoryThumb = mealDetail.strCategoryThumb
+        val strDes = mealDetail.description
+        val hashMap: HashMap<String, Any> = HashMap()
+        hashMap["strCategoryId"] = categoryId
+        hashMap["strCategory"] = strCategory
+        hashMap["strCategoryThumb"] = strCategoryThumb
+        hashMap["description"] = strDes
         hashMap["timestamp"] = timeStamp
+        hashMap["check"]= check
 
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
         ref.child(categoryId).setValue(hashMap)

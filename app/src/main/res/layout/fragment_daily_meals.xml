@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_toolbar" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/monday_april_18_2022"

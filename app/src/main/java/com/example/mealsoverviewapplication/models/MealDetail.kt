@@ -8,5 +8,6 @@ data class MealDetail(
     val strCategory: String = "",
     val strCategoryThumb: String = "",
     val description: String ="",
-    val categoryId : String =""
+    val strCategoryId : String ="",
+    val check: String =""
 ): Parcelable

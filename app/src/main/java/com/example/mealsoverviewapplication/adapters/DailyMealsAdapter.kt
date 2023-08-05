@@ -38,6 +38,9 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
             binding.imgFavorite.setOnClickListener {
                 binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_red_24)
             }
+            binding.imgFavorite.setOnClickListener {
+
+            }
         }
     }
 

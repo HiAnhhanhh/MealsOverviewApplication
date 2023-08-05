@@ -37,6 +37,7 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
             binding.root.setOnClickListener {
                 listener.onItemClick(position)
             }
+
         }
     }
 

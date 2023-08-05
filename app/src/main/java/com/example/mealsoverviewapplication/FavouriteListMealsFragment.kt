@@ -46,6 +46,17 @@ class FavouriteListMealsFragment : Fragment() {
         binding.imgBackBtn.setOnClickListener {
             findNavController().popBackStack()
         }
+        _favouriteAdapter.setOnItemClickListener(object : FavouriteMealsAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                val categoryId = _favouriteAdapter._favouriteMealsArrayList[position].strCategoryId.toString()
+                val title = _favouriteAdapter._favouriteMealsArrayList[position].strCategory.toString()
+                val thumb = _favouriteAdapter._favouriteMealsArrayList[position].strCategoryThumb.toString()
+                val description = _favouriteAdapter._favouriteMealsArrayList[position].description.toString()
+                val mealDetail = MealDetail (title, thumb, description,categoryId)
+                val direction = FavouriteListMealsFragmentDirections.favoriteListMealsFragmentActionToViewDetailOfMealFragment(mealDetail)
+                findNavController().navigate(direction)
+            }
+        })
     }
 
     private fun initView() {
@@ -55,16 +66,14 @@ class FavouriteListMealsFragment : Fragment() {
 
 
     private fun initData() {
-        Log.d("check_fvlist", "getFavouritesList: ")
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
         ref.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.d("check_fvlist", "onDataChange: oke ")
                 if (snapshot.exists()){
                     for (favouriteSnapshot in snapshot.children){
-                        val favouriteList = favouriteSnapshot.getValue(MealDetail::class.java)
-                        if (favouriteList != null) {
-                            favouriteListMeals.add(favouriteList)
+                        val favouriteModel: MealDetail? = favouriteSnapshot.getValue(MealDetail::class.java)
+                        if (favouriteModel != null) {
+                            favouriteListMeals.add(favouriteModel)
                         }
                     }
                     _favouriteAdapter.setData(favouriteListMeals)

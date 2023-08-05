@@ -23,6 +23,9 @@
         android:name="com.example.mealsoverviewapplication.FavouriteListMealsFragment"
         android:label="fragment_favorite_list_meals"
         tools:layout="@layout/fragment_favourite_list_meals" >
+        <action
+            android:id="@+id/favoriteListMealsFragmentActionToViewDetailOfMealFragment"
+            app:destination="@id/viewDetailOfMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
