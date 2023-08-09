@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.adapters.FilterMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentSearchMealsBinding
-import com.example.mealsoverviewapplication.models.Meal
+import com.example.mealsoverviewapplication.models.Category
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.FilterMealsViewModel
 import kotlin.collections.ArrayList
@@ -24,6 +24,7 @@ class SearchMealsFragment : Fragment() {
     private val binding by lazy {
         FragmentSearchMealsBinding.inflate(layoutInflater)
     }
+
     private val filterMealsViewModel by viewModels<FilterMealsViewModel>()
 
     private val filterMealsAdapter by lazy {
@@ -40,16 +41,13 @@ class SearchMealsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initObserver()
         initView()
-        initData()
         initAction()
     }
 
     private fun initObserver() {
         filterMealsViewModel.responseLiveData.observe(viewLifecycleOwner, Observer { data ->
             if (data != null){
-                filterMealsAdapter.setData(data as ArrayList<Meal>)
-            }else {
-                filterMealsAdapter._filterMealsArrayList.clear()
+                filterMealsAdapter.setData(data as ArrayList<MealDetail>)
             }
         })
     }
@@ -70,32 +68,23 @@ class SearchMealsFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
                 filterMealsList(s)
             }
-
         })
-
         filterMealsAdapter.setOnItemClickListener(object : FilterMealsAdapter.onItemClickListener {
-            override fun onItemClick(position: Int) {
-                val title = filterMealsAdapter._filterMealsArrayList[position].strCategory.toString()
-                val thumb = filterMealsAdapter._filterMealsArrayList[position].strMealThumb.toString()
-                val description = filterMealsAdapter._filterMealsArrayList[position].strInstructions.toString()
-                val mealDetail = MealDetail(title, thumb, description)
-                val direction = SearchMealsFragmentDirections.searchMealsFragmentActionToViewDetailOfMealFragment(mealDetail)
+            override fun onItemClick(data:MealDetail, position: Int) {
+                val mealId = data.idMeal
+                val direction = SearchMealsFragmentDirections.searchMealsFragmentActionToViewDetailOfMealFragment(mealId)
                 findNavController().navigate(direction)
             }
         })
     }
-
     private fun filterMealsList(s: Editable?) {
         if (!s.isNullOrEmpty()){
             filterMealsViewModel.getFilterMeals(s)
+            initObserver()
             binding.recList.isVisible = true
         } else{
-            filterMealsAdapter._filterMealsArrayList.clear()
             binding.recList.isVisible = false
         }
-    }
-    private fun initData() {
-
     }
 }
 

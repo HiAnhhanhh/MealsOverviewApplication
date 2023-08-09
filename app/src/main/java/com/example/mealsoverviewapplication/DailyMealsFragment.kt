@@ -8,17 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.adapters.DailyMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentDailyMealsBinding
 import com.example.mealsoverviewapplication.models.Category
-import com.example.mealsoverviewapplication.models.Meal
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.DailyMealsViewModel
 import com.example.mealsoverviewapplication.viewmodels.RandomMealViewModel
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -34,7 +34,7 @@ class DailyMealsFragment : Fragment() {
     private val dailyMealsViewModel by viewModels<DailyMealsViewModel> ()
     private val randomMealViewModel by viewModels<RandomMealViewModel>()
 
-    var mealRandom: ArrayList<Meal> = arrayListOf()
+    private var mealRandom: ArrayList<MealDetail> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,23 +51,36 @@ class DailyMealsFragment : Fragment() {
     private fun initAction() {
 
         _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                val categoryId = _dailyMealsAdapter._dailyMealsArrayList[position].idCategory.toString()
-                val title = _dailyMealsAdapter._dailyMealsArrayList[position].strCategory.toString()
-                val thumb = _dailyMealsAdapter._dailyMealsArrayList[position].strCategoryThumb.toString()
-                val description = _dailyMealsAdapter._dailyMealsArrayList[position].strCategoryDescription.toString()
-                val mealDetail = MealDetail (title, thumb, description,categoryId)
-                val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToViewDetailFragment(mealDetail)
+            override fun onItemClick(data:Category, position: Int) {
+                val category = data.strCategory
+                val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToListMealsFragment(category)
                 findNavController().navigate(direction)
+            }
+
+            override fun onItemClickFavorite(data:Category, position: Int) {
+                val check = "true"
+                val timeStamp = System.currentTimeMillis().toString()
+                val hashMap: HashMap<String, Any> = HashMap()
+                hashMap[Constants.STR_CATEGORY_ID] = data.idCategory
+                hashMap[Constants.STR_CATEGORY] = data.strCategory
+                hashMap[Constants.STR_CATEGORY_THUMB] = data.strCategoryThumb
+                hashMap[Constants.DESCRIPTION] = data.strCategoryDescription
+                hashMap[Constants.TIMESTAMP] = timeStamp
+                hashMap[Constants.CHECK]= check
+
+                val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
+                ref.child(data.idCategory).setValue(hashMap)
+                    .addOnSuccessListener {
+                    }
+                    .addOnFailureListener { e ->
+                        Log.d("check_false", "insertData: "+ e.message)
+                    }
             }
         })
         binding.makeItBtn.setOnClickListener {
-            val randomMeal: Meal? = this.mealRandom.firstOrNull()
-            val title = randomMeal?.strMeal.toString()
-            val thumb = randomMeal?.strMealThumb.toString()
-            val description = randomMeal?.strInstructions.toString()
-            val mealDetail = MealDetail(title,thumb, description)
-            val directions = DailyMealsFragmentDirections.dailyMealsFragmentActionToViewDetailFragment(mealDetail)
+            val randomMeal : MealDetail? = this.mealRandom.firstOrNull()
+            val mealId = randomMeal?.idMeal.toString()
+            val directions = DailyMealsFragmentDirections.dailyMealsFragmentActionToViewDetailFragment(mealId)
             findNavController().navigate(directions)
         }
 
@@ -91,7 +104,7 @@ class DailyMealsFragment : Fragment() {
         })
     }
     private fun initViewRandom() {
-        var randomMeal: Meal? = this.mealRandom.firstOrNull()
+        val randomMeal: MealDetail? = this.mealRandom.firstOrNull()
         if (randomMeal != null) {
             binding.tvDesc.text = randomMeal.strMeal
             Glide.with(binding.shapeAbleImageView).load(randomMeal.strMealThumb).into(binding.shapeAbleImageView)
@@ -104,13 +117,6 @@ class DailyMealsFragment : Fragment() {
 
         binding.recDailyMeal.layoutManager = LinearLayoutManager(context)
         binding.recDailyMeal.adapter = _dailyMealsAdapter
-//        val type = dailyMealsViewModel.checkCategoryType("pho")
-//        binding.makeItBtn.text = getString(type.title)
-//        val typestring = "xxx"
-//        if (typestring == "pho") {
-//            binding.run {
-//                makeItBtn.
-//            }
-//        }
+
     }
 }

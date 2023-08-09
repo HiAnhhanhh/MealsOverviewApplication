@@ -1,20 +1,18 @@
 package com.example.mealsoverviewapplication.repository
 
 import com.example.mealsoverviewapplication.apis.RetrofitBuilder
-import com.example.mealsoverviewapplication.models.RandomMeal
+import com.example.mealsoverviewapplication.models.ViewMealDetail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import okhttp3.Dispatcher
 
-
-class RandomMealRepository {
-
+class ViewMealDetailRepository {
     companion object {
-        fun getRandomMeal () : Flow<RandomMeal> = flow {
-            val response = RetrofitBuilder.api.getRandomMeal()
+        fun getViewMealDetail(mealId:String) : Flow<ViewMealDetail> = flow {
+            val response = RetrofitBuilder.api.getMealDetail(mealId)
             emit(response)
         }.flowOn(Dispatchers.IO)
     }
-
 }

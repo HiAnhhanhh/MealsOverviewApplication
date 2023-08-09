@@ -47,18 +47,13 @@ class FavouriteListMealsFragment : Fragment() {
             findNavController().popBackStack()
         }
         _favouriteAdapter.setOnItemClickListener(object : FavouriteMealsAdapter.onItemClickListener{
-            override fun onItemClick(position: Int) {
-                val categoryId = _favouriteAdapter._favouriteMealsArrayList[position].strCategoryId.toString()
-                val title = _favouriteAdapter._favouriteMealsArrayList[position].strCategory.toString()
-                val thumb = _favouriteAdapter._favouriteMealsArrayList[position].strCategoryThumb.toString()
-                val description = _favouriteAdapter._favouriteMealsArrayList[position].description.toString()
-                val mealDetail = MealDetail (title, thumb, description,categoryId)
-                val direction = FavouriteListMealsFragmentDirections.favoriteListMealsFragmentActionToViewDetailOfMealFragment(mealDetail)
+            override fun onItemClick(data:MealDetail, position: Int) {
+                val mealId = data.idMeal
+                val direction = FavouriteListMealsFragmentDirections.favoriteListMealsFragmentActionToViewDetailOfMealFragment(mealId)
                 findNavController().navigate(direction)
             }
         })
     }
-
     private fun initView() {
         binding.favoriteRec.layoutManager = LinearLayoutManager(context)
         binding.favoriteRec.adapter = _favouriteAdapter
@@ -72,7 +67,7 @@ class FavouriteListMealsFragment : Fragment() {
                 favouriteListMeals.clear()
                 if (snapshot.exists()){
                     for (favouriteSnapshot in snapshot.children){
-                        val favouriteModel: MealDetail? = favouriteSnapshot.getValue(MealDetail::class.java)
+                        val favouriteModel = favouriteSnapshot.getValue(MealDetail::class.java)
                         if (favouriteModel != null) {
                             favouriteListMeals.add(favouriteModel)
                         }

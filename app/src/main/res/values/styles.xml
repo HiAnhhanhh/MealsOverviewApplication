@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="rounded_corner">
-        <item name="cornerSize">20dp</item>
+        <item name="cornerSize">@dimen/_20dp</item>
     </style>
 
     <style name="CustomCheckbox02" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">

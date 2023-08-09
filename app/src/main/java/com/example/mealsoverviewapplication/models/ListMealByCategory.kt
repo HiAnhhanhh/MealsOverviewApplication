@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ListFilterMeals(
+data class ListMealByCategory(
     @SerialName("meals")
-    val meals: List<MealDetail>?
+    val meals: List<Meal>?
 )

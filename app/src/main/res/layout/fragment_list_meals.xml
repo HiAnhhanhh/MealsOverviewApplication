@@ -7,10 +7,10 @@
     tools:context=".ListMealsFragment">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:id="@+id/imgBackStack"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/menu_icon"
         android:src="@drawable/baseline_chevron_left_24_black"
         app:layout_constraintHeight_percent=".05"
@@ -19,9 +19,9 @@
         app:layout_constraintWidth_percent=".1" />
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/search"
         android:src="@drawable/baseline_search_12"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,18 +33,20 @@
         android:id="@+id/titleListMeals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="@dimen/_20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/_10dp"
         android:text="@string/list_meals"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listMealRec"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".9"
         tools:listitem="@layout/item_daily_meal"
         app:layout_constraintWidth_percent=".9"
         android:layout_marginTop="20dp"

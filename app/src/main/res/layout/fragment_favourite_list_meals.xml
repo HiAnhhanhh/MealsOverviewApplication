@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/imgBackBtn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/menu_icon"
         android:src="@drawable/baseline_chevron_left_24_black"
         app:layout_constraintHeight_percent=".05"
@@ -21,9 +21,9 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/search"
         android:src="@drawable/baseline_search_12"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,11 +33,11 @@
 
     <ImageView
         android:id="@+id/imv_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
         app:layout_constraintWidth_percent=".2"
         app:layout_constraintHeight_percent=".05"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/menu_logo"
         android:src="@drawable/menu_logo"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
@@ -45,12 +45,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
         app:layout_constraintWidth_percent=".9"
         app:layout_constraintHeight_percent=".9"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imv_logo">
 

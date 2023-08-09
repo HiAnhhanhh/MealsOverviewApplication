@@ -10,10 +10,9 @@
 
     <ImageView
         android:id="@+id/imgThumb"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/img_1"
         android:contentDescription="@string/image_thumb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent=".35"
@@ -22,8 +21,8 @@
         app:layout_constraintWidth_percent="1" />
 
     <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
         android:background="@color/foreign"
         app:layout_constraintBottom_toBottomOf="@id/imgThumb"
         app:layout_constraintEnd_toEndOf="@+id/imgThumb"
@@ -31,9 +30,9 @@
         app:layout_constraintTop_toTopOf="@id/imgThumb" />
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/search"
         android:src="@drawable/baseline_search_24_white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,9 +42,9 @@
 
     <ImageView
         android:id="@+id/imgBackBtn"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:src="@drawable/baseline_chevron_left_24"
         android:contentDescription="@string/menu_icon"
         app:layout_constraintHeight_percent=".05"
@@ -55,9 +54,9 @@
 
     <ImageView
         android:id="@+id/menuLogo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_margin="@dimen/_10dp"
         android:contentDescription="@string/menu_logo"
         android:src="@drawable/logo_white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,10 +69,11 @@
         android:id="@+id/tvMealDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/eggs_benedict"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="@dimen/_22sp"
+        android:padding="@dimen/_10dp"
         android:textStyle="bold"
+        app:layout_constraintWidth_percent=".9"
         app:layout_constraintVertical_bias=".8"
         app:layout_constraintBottom_toBottomOf="@+id/imgThumb"
         app:layout_constraintEnd_toEndOf="@+id/imgThumb"
@@ -83,10 +83,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
+        android:drawablePadding="@dimen/_10dp"
         android:text="@string/by_gordon_ramsay"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="@dimen/_15sp"
         app:drawableTint="@color/white"
         app:layout_constraintVertical_bias="1"
         app:layout_constraintBottom_toTopOf="@+id/tvMealDetail"
@@ -98,10 +98,10 @@
         android:id="@+id/_tvViewCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
+        android:drawablePadding="@dimen/_10dp"
         android:text="@string/_105"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         android:gravity="center"
         app:drawableStartCompat="@drawable/baseline_remove_red_eye_24"
         app:drawableTint="@color/white"
@@ -113,10 +113,10 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
+        android:drawablePadding="@dimen/_10dp"
         android:gravity="center"
         android:text="@string/_45m"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         app:drawableStartCompat="@drawable/baseline_access_time_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,12 +129,12 @@
         android:id="@+id/tvAddedToMyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
+        android:drawablePadding="@dimen/_10dp"
         android:visibility="gone"
         android:gravity="center"
         android:textColor="@color/red"
         android:text="@string/add_to_my_list"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         app:drawableStartCompat="@drawable/baseline_favorite_red_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -146,11 +146,10 @@
         android:id="@+id/tvAddToMyList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawablePadding="10dp"
-        android:visibility="visible"
+        android:drawablePadding="@dimen/_10dp"
         android:gravity="center"
         android:text="@string/add_to_my_list"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18sp"
         app:drawableStartCompat="@drawable/baseline_favorite_border_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,8 +159,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="@dimen/_0dp"
+        android:layout_marginTop="@dimen/_10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -171,16 +170,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="@dimen/_20dp">
 
             <TextView
                 android:id="@+id/tvIngredients"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
+                android:drawablePadding="@dimen/_10dp"
                 android:gravity="center"
                 android:text="@string/ingredients"
-                android:textSize="22sp"
+                android:textSize="@dimen/_22sp"
                 app:drawableStartCompat="@drawable/chef_icon_3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,150 +188,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
                 app:layout_constraintVertical_bias=".05" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkbox1"
-                    style="@style/CustomCheckbox02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/tvIngredient1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/butter"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tvMeasure1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_3_tbsp"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkbox2"
-                    style="@style/CustomCheckbox02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/tvIngredient2"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/butter"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tvMeasure2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_3_tbsp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkbox3"
-                    style="@style/CustomCheckbox02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/tvIngredient3"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/butter"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tvMeasure3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_3_tbsp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkbox4"
-                    style="@style/CustomCheckbox02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/tvIngredient4"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/butter"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tvMeasure4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_3_tbsp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/checkbox5"
-                    style="@style/CustomCheckbox02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:id="@+id/tvIngredient5"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/butter"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tvMeasure5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_3_tbsp"/>
-
-
-
-            </LinearLayout>
+           <androidx.recyclerview.widget.RecyclerView
+               android:id="@+id/ingredientRec"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/_10dp"
+               android:layout_marginBottom="@dimen/_10dp"
+               tools:listitem="@layout/item_checkbox"/>
 
 
             <TextView
                 android:id="@+id/tvHowToMake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
+                android:drawablePadding="@dimen/_10dp"
                 android:gravity="center"
                 android:text="@string/how_to_make"
-                android:textSize="22sp"
+                android:textSize="@dimen/_22sp"
                 app:drawableStartCompat="@drawable/chef_icon_3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -345,8 +217,8 @@
                 android:id="@+id/tvStep"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"/>
+                android:layout_marginTop="@dimen/_10dp"
+                android:textSize="@dimen/_16sp"/>
         </LinearLayout>
 
 

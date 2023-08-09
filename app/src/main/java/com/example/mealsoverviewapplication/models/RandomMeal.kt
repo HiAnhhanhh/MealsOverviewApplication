@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RandomMeal(
     @SerialName("meals")
-    val meals: List<Meal>?
+    val meals: List<MealDetail>?
 )

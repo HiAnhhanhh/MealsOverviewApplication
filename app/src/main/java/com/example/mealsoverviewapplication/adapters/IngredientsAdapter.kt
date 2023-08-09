@@ -4,21 +4,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mealsoverviewapplication.databinding.ItemCheckboxBinding
-import com.example.mealsoverviewapplication.models.Meal
+import com.example.mealsoverviewapplication.models.Ingredient
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
     
-    val _ingredientArrayList : ArrayList<Meal> = arrayListOf()
+    val _ingredientArrayList : ArrayList<Ingredient> = arrayListOf()
     
-    fun setData (data: ArrayList<Meal>){
+    fun setData (data: ArrayList<Ingredient>){
         _ingredientArrayList.clear()
         _ingredientArrayList.addAll(data)
-//        notifyDataSetChanged()
+        notifyDataSetChanged()
     }
     
     class ViewHolder(private val binding: ItemCheckboxBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindView (data : Meal) {
-            binding.apply { 
+        fun bind (data : Ingredient) {
+            binding.apply {
+                binding.tvIngredient.text = data.Ingredient
+                binding.tvMeasure.text = data.Measure
             }
         }
     }
@@ -32,6 +34,7 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        
+        val ingredient = _ingredientArrayList[position]
+        holder.bind(ingredient)
     }
 }

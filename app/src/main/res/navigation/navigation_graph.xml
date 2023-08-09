@@ -17,6 +17,9 @@
         <action
             android:id="@+id/dailyMealsFragmentActionToSearchMealFragment"
             app:destination="@+id/searchMealsFragment"/>
+        <action
+            android:id="@+id/dailyMealsFragmentActionToListMealsFragment"
+            app:destination="@id/listMealsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteListMealsFragment"
@@ -26,6 +29,9 @@
         <action
             android:id="@+id/favoriteListMealsFragmentActionToViewDetailOfMealFragment"
             app:destination="@id/viewDetailOfMealFragment" />
+
+        <argument android:name="mealId"
+            app:argType="string"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -40,9 +46,10 @@
         <action
             android:id="@+id/viewDetailOfMealFragmentActionToDailyMealsFragment"
             app:destination="@id/dailyMealsFragment" />
-        <argument
-            android:name="mealDetail"
-            app:argType="com.example.mealsoverviewapplication.models.MealDetail"/>
+
+        <argument android:name="mealId"
+            app:argType="string"/>
+
     </fragment>
     <fragment
         android:id="@+id/searchMealsFragment"
@@ -52,5 +59,18 @@
         <action
             android:id="@+id/searchMealsFragmentActionToViewDetailOfMealFragment"
             app:destination="@id/viewDetailOfMealFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listMealsFragment"
+        android:name="com.example.mealsoverviewapplication.ListMealsFragment"
+        android:label="fragment_list_meals"
+        tools:layout="@layout/fragment_list_meals" >
+
+        <argument android:name="category"
+            app:argType="string"/>
+        <action
+            android:id="@+id/listMealsFragmentActionViewDetailOfMealFragment"
+            app:destination="@id/viewDetailOfMealFragment" />
+
     </fragment>
 </navigation>

@@ -5,21 +5,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
-import com.example.mealsoverviewapplication.models.Meal
+import com.example.mealsoverviewapplication.models.MealDetail
 
 class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsViewHolder>() {
 
-    var _filterMealsArrayList : ArrayList<Meal> = arrayListOf()
+    private var _filterMealsArrayList : ArrayList<MealDetail> = arrayListOf()
     private lateinit var mlistener : onItemClickListener
 
-    fun setData (data: ArrayList<Meal>){
+    fun setData (data: ArrayList<MealDetail>){
         _filterMealsArrayList.clear()
         _filterMealsArrayList.addAll(data)
         notifyDataSetChanged()
     }
 
     interface onItemClickListener {
-        fun onItemClick (position: Int)
+        fun onItemClick (data: MealDetail, position: Int)
     }
 
     fun setOnItemClickListener (listener: onItemClickListener){
@@ -27,7 +27,7 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
     }
 
     class ItemMealsViewHolder(private val binding : ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindView (data: Meal, position: Int, listener: onItemClickListener){
+        fun bindView (data: MealDetail, position: Int, listener: onItemClickListener){
             binding.apply {
                 tvTitle.text = data.strMeal
                 tvDes.text = data.strInstructions
@@ -35,7 +35,7 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
             }
 
             binding.root.setOnClickListener {
-                listener.onItemClick(position)
+                listener.onItemClick(data,position)
             }
 
         }

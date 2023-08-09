@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mealsoverviewapplication.Constants
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.models.Category
@@ -15,10 +16,11 @@ import com.google.firebase.database.FirebaseDatabase
 
 class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
-    val _dailyMealsArrayList: ArrayList<Category> = arrayListOf()
+    private val _dailyMealsArrayList: ArrayList<Category> = arrayListOf()
     private lateinit var mlistener : onItemClickListener
     interface onItemClickListener {
-        fun onItemClick (position: Int)
+        fun onItemClick (data:Category, position: Int)
+        fun onItemClickFavorite (data:Category, position: Int)
     }
     fun setOnItemClickListener(listener: onItemClickListener){
         mlistener = listener
@@ -37,28 +39,12 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
             Glide.with(binding.imvDailyMeal).load(data.strCategoryThumb).into(binding.imvDailyMeal)
 
             binding.root.setOnClickListener {
-                listener.onItemClick(position)
+                listener.onItemClick(data,position)
             }
 
             binding.imgFavorite.setOnClickListener {
                 binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_red_24)
-                var check = "true"
-                val timeStamp = System.currentTimeMillis().toString()
-                val hashMap: HashMap<String, Any> = HashMap()
-                hashMap["strCategoryId"] = data.idCategory.toString()
-                hashMap["strCategory"] = data.strCategory.toString()
-                hashMap["strCategoryThumb"] = data.strCategoryThumb.toString()
-                hashMap["description"] = data.strCategoryDescription.toString()
-                hashMap["timestamp"] = timeStamp
-                hashMap["check"]= check
-
-                val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
-                ref.child(data.idCategory.toString()).setValue(hashMap)
-                    .addOnSuccessListener {
-                    }
-                    .addOnFailureListener { e ->
-                        Log.d("check_false", "insertData: "+ e.message)
-                    }
+                listener.onItemClickFavorite(data,position)
             }
         }
     }
@@ -74,6 +60,6 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dailyModel = _dailyMealsArrayList[position]
-        holder.bindViewHolder(dailyModel,position,mlistener)
+        holder.bindViewHolder(dailyModel,position, mlistener)
     }
 }

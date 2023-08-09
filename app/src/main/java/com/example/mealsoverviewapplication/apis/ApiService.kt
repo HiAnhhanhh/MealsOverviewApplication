@@ -21,4 +21,10 @@ interface ApiService {
     @GET("random.php")
     suspend fun getRandomMeal() : RandomMeal
 
+    @GET("filter.php")
+    suspend fun getListMeals(@Query("c") category: String) : ListMealByCategory
+
+    @GET("lookup.php")
+    suspend fun getMealDetail (@Query("i") mealId : String) : ViewMealDetail
+
 }
