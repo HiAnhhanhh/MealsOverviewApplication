@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mealsoverviewapplication.models.Category
-import com.example.mealsoverviewapplication.models.CategoryTypes
 import com.example.mealsoverviewapplication.repository.CategoryRepository
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -26,12 +25,12 @@ class DailyMealsViewModel : ViewModel() {
                 }
         }
     }
-    fun checkCategoryType(type: String): CategoryTypes {
-        return when(type) {
-            "pho" -> CategoryTypes.PHO
-            else -> {CategoryTypes.GA}
-        }
-    }
+//    fun checkCategoryType(type: String): CategoryTypes {
+//        return when(type) {
+//            "pho" -> CategoryTypes.PHO
+//            else -> {CategoryTypes.GA}
+//        }
+//    }
 }
 
 

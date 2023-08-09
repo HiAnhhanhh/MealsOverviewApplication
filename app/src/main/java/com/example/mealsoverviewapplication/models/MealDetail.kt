@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MealDetail(
     @SerialName("dateModified")
-    val dateModified: Any="",
+    val dateModified: String="",
     @SerialName("idMeal")
     val idMeal: String="",
     @SerialName("strArea")
@@ -15,11 +15,11 @@ data class MealDetail(
     @SerialName("strCategory")
     val strCategory: String="",
     @SerialName("strCreativeCommonsConfirmed")
-    val strCreativeCommonsConfirmed: Any="",
+    val strCreativeCommonsConfirmed: String="",
     @SerialName("strDrinkAlternate")
-    val strDrinkAlternate: Any="",
+    val strDrinkAlternate: String="",
     @SerialName("strImageSource")
-    val strImageSource: Any="",
+    val strImageSource: String="",
     @SerialName("strIngredient1")
     val strIngredient1: String="",
     @SerialName("strIngredient10")

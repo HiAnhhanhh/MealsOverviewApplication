@@ -5,12 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
+import com.example.mealsoverviewapplication.models.Meal
 import com.example.mealsoverviewapplication.models.MealDetail
 
 class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsViewHolder>() {
 
     private var _filterMealsArrayList : ArrayList<MealDetail> = arrayListOf()
-    private lateinit var mlistener : onItemClickListener
+    private lateinit var mListener : OnItemClickListener
+
+    fun clearData(){
+        _filterMealsArrayList.clear()
+    }
 
     fun setData (data: ArrayList<MealDetail>){
         _filterMealsArrayList.clear()
@@ -18,26 +23,24 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
         notifyDataSetChanged()
     }
 
-    interface onItemClickListener {
+    interface OnItemClickListener {
         fun onItemClick (data: MealDetail, position: Int)
     }
 
-    fun setOnItemClickListener (listener: onItemClickListener){
-        mlistener = listener
+    fun setOnItemClickListener (listener: OnItemClickListener){
+        mListener = listener
     }
 
     class ItemMealsViewHolder(private val binding : ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindView (data: MealDetail, position: Int, listener: onItemClickListener){
+        fun bindView (data: MealDetail, position: Int, listener: OnItemClickListener){
             binding.apply {
                 tvTitle.text = data.strMeal
                 tvDes.text = data.strInstructions
                 Glide.with(binding.imvDailyMeal).load(data.strMealThumb).into(binding.imvDailyMeal)
             }
-
             binding.root.setOnClickListener {
                 listener.onItemClick(data,position)
             }
-
         }
     }
 
@@ -52,6 +55,6 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
 
     override fun onBindViewHolder(holder: ItemMealsViewHolder, position: Int) {
         val filterMeal = _filterMealsArrayList[position]
-        holder.bindView(filterMeal, position, mlistener)
+        holder.bindView(filterMeal, position, mListener)
     }
 }

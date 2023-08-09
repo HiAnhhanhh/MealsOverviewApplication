@@ -17,7 +17,7 @@ class FilterMealsViewModel : ViewModel() {
         viewModelScope.launch {
             FilterMealsRepository.getFilterMeals(letter)
                 .catch { e ->
-                    Log.d("check_data_filterMeals", "getFilterMeals: ")
+                    Log.d("check_data_filterMeals", "getFilterMeals: ${e.message} ")
                 }
                 .collect { data ->
                     responseLiveData.value = data.meals

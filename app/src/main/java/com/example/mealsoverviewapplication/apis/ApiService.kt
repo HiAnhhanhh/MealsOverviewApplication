@@ -12,9 +12,6 @@ interface ApiService {
     @GET("categories.php")
     suspend fun getCategories (): Categories
 
-    @GET("random.php")
-    suspend fun getRandomMeals (): RandomMeal
-
     @GET("search.php")
     suspend fun getFilterMeals (@Query("f") letter: Editable?) : ListFilterMeals
 

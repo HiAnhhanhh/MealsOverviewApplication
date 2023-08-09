@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -98,14 +97,14 @@ class ViewDetailOfMealFragment : Fragment() {
     private fun initObserver() {
         val mealId = args.mealId
         viewMealDetailViewModel.getViewMealDetail(mealId)
-        viewMealDetailViewModel.responseLiveData.observe(viewLifecycleOwner, Observer { data ->
+        viewMealDetailViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 viewMealDetailList.addAll(data)
                 initViewDetail(viewMealDetailList)
                 initAddFavourite(viewMealDetailList)
                 initViewIngredients(viewMealDetailList)
             }
-        })
+        }
     }
     private fun initViewIngredients(viewMealDetailList: ArrayList<MealDetail>) {
         val ingredientList : ArrayList<Ingredient> = arrayListOf()

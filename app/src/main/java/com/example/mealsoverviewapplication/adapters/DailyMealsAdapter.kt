@@ -1,29 +1,23 @@
 package com.example.mealsoverviewapplication.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.mealsoverviewapplication.Constants
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.models.Category
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
 
 class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
     private val _dailyMealsArrayList: ArrayList<Category> = arrayListOf()
-    private lateinit var mlistener : onItemClickListener
-    interface onItemClickListener {
-        fun onItemClick (data:Category, position: Int)
+    private lateinit var mListener : OnItemClickListener
+    interface OnItemClickListener {
+        fun onItemClick (data: Category, position: Int)
         fun onItemClickFavorite (data:Category, position: Int)
     }
-    fun setOnItemClickListener(listener: onItemClickListener){
-        mlistener = listener
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        mListener = listener
     }
 
     fun setData (data: ArrayList<Category>) {
@@ -33,7 +27,7 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
     }
 
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindViewHolder (data : Category, position: Int, listener: onItemClickListener){
+        fun bindViewHolder (data : Category, position: Int, listener: OnItemClickListener){
             binding.tvTitle.text = data.strCategory
             binding.tvDes.text = data.strCategoryDescription
             Glide.with(binding.imvDailyMeal).load(data.strCategoryThumb).into(binding.imvDailyMeal)
@@ -60,6 +54,7 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dailyModel = _dailyMealsArrayList[position]
-        holder.bindViewHolder(dailyModel,position, mlistener)
+        holder.bindViewHolder(dailyModel,position, mListener)
     }
 }
+

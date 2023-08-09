@@ -46,7 +46,7 @@ class FavouriteListMealsFragment : Fragment() {
         binding.imgBackBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-        _favouriteAdapter.setOnItemClickListener(object : FavouriteMealsAdapter.onItemClickListener{
+        _favouriteAdapter.setOnItemClickListener(object : FavouriteMealsAdapter.OnItemClickListener{
             override fun onItemClick(data:MealDetail, position: Int) {
                 val mealId = data.idMeal
                 val direction = FavouriteListMealsFragmentDirections.favoriteListMealsFragmentActionToViewDetailOfMealFragment(mealId)

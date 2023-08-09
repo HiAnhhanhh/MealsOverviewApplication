@@ -1,6 +1,5 @@
 package com.example.mealsoverviewapplication.repository
 
-import android.util.Log
 import com.example.mealsoverviewapplication.apis.RetrofitBuilder
 import com.example.mealsoverviewapplication.models.Categories
 import kotlinx.coroutines.Dispatchers

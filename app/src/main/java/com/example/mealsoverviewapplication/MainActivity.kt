@@ -21,12 +21,15 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.listMealsFragment){
-                binding.bottomNavigationView.isVisible = false
+            when (destination.id) {
+                R.id.listMealsFragment -> {
+                    binding.bottomNavigationView.isVisible = false
+                }
+                R.id.searchMealsFragment -> {
+                    binding.bottomNavigationView.isVisible = false
+                }
+                else -> binding.bottomNavigationView.isVisible = destination.id != R.id.viewDetailOfMealFragment
             }
-            else if(destination.id == R.id.searchMealsFragment) {
-                binding.bottomNavigationView.isVisible = false
-            } else binding.bottomNavigationView.isVisible = destination.id != R.id.viewDetailOfMealFragment
         }
     }
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +31,7 @@ class ListMealsFragment : Fragment() {
 
     private val args : ListMealsFragmentArgs by navArgs()
 
-    var listMeals : ArrayList<Meal> = arrayListOf()
+    private var listMeals : ArrayList<Meal> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +54,7 @@ class ListMealsFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        listMealsAdapter.setOnItemClickListener(object : ListMealsAdapter.onItemClickListener{
+        listMealsAdapter.setOnItemClickListener(object : ListMealsAdapter.OnItemClickListener{
             override fun onItemClick(data: Meal, position: Int) {
                 val mealId = data.idMeal
                 val directions = ListMealsFragmentDirections.listMealsFragmentActionViewDetailOfMealFragment(mealId)
@@ -102,12 +101,11 @@ class ListMealsFragment : Fragment() {
     private fun initObserver() {
         val category = args.category
         listMealsViewModel.getListMeals(category)
-        listMealsViewModel.responseLiveData.observe(viewLifecycleOwner, Observer { data ->
-            if( data != null){
+        listMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
+            if (data != null) {
                 listMeals.addAll(data as ArrayList<Meal>)
-                Log.d("check_listMeals", "initObserver: "+ listMeals)
-                listMealsAdapter.setData(listMeals )
+                listMealsAdapter.setData(listMeals)
             }
-        })
+        }
     }
 }

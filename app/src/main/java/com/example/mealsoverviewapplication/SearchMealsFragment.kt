@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.adapters.FilterMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentSearchMealsBinding
-import com.example.mealsoverviewapplication.models.Category
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.FilterMealsViewModel
 import kotlin.collections.ArrayList
@@ -39,17 +37,18 @@ class SearchMealsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         initObserver()
         initView()
         initAction()
     }
 
     private fun initObserver() {
-        filterMealsViewModel.responseLiveData.observe(viewLifecycleOwner, Observer { data ->
+        filterMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null){
                 filterMealsAdapter.setData(data as ArrayList<MealDetail>)
             }
-        })
+        }
     }
     private fun initView() {
         binding.recList.layoutManager = LinearLayoutManager(context)
@@ -69,7 +68,7 @@ class SearchMealsFragment : Fragment() {
                 filterMealsList(s)
             }
         })
-        filterMealsAdapter.setOnItemClickListener(object : FilterMealsAdapter.onItemClickListener {
+        filterMealsAdapter.setOnItemClickListener(object : FilterMealsAdapter.OnItemClickListener {
             override fun onItemClick(data:MealDetail, position: Int) {
                 val mealId = data.idMeal
                 val direction = SearchMealsFragmentDirections.searchMealsFragmentActionToViewDetailOfMealFragment(mealId)
@@ -80,10 +79,10 @@ class SearchMealsFragment : Fragment() {
     private fun filterMealsList(s: Editable?) {
         if (!s.isNullOrEmpty()){
             filterMealsViewModel.getFilterMeals(s)
-            initObserver()
             binding.recList.isVisible = true
         } else{
             binding.recList.isVisible = false
+            filterMealsAdapter.clearData()
         }
     }
 }

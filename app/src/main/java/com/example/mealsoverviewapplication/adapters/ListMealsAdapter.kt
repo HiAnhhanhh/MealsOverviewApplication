@@ -11,7 +11,7 @@ import com.example.mealsoverviewapplication.models.Meal
 
 class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
     private var _listMealsArrayList : ArrayList<Meal> = arrayListOf()
-    private lateinit var mlistener : onItemClickListener
+    private lateinit var mListener : OnItemClickListener
 
     fun setData (data: ArrayList<Meal>){
         _listMealsArrayList.clear()
@@ -19,19 +19,19 @@ class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    interface onItemClickListener {
+    interface OnItemClickListener {
         fun onItemClick (data: Meal, position: Int)
         fun onClickFavorite(data: Meal, position: Int)
         fun onClickAddedFavorite(data: Meal, position: Int)
     }
 
-    fun setOnItemClickListener (listener: onItemClickListener){
-        mlistener = listener
+    fun setOnItemClickListener (listener: OnItemClickListener){
+        mListener = listener
     }
 
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind (data: Meal, position: Int, listener:onItemClickListener){
+        fun bind (data: Meal, position: Int, listener: OnItemClickListener){
             binding.apply {
                 tvTitle.text = data.strMeal
                 Glide.with(binding.imvDailyMeal).load(data.strMealThumb).into(binding.imvDailyMeal)
@@ -61,9 +61,8 @@ class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return _listMealsArrayList.size
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val meal = _listMealsArrayList[position]
-        holder.bind(meal, position, mlistener)
+        holder.bind(meal, position, mListener)
     }
 }

@@ -8,7 +8,7 @@ import com.example.mealsoverviewapplication.models.Ingredient
 
 class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>() {
     
-    val _ingredientArrayList : ArrayList<Ingredient> = arrayListOf()
+    private val _ingredientArrayList : ArrayList<Ingredient> = arrayListOf()
     
     fun setData (data: ArrayList<Ingredient>){
         _ingredientArrayList.clear()

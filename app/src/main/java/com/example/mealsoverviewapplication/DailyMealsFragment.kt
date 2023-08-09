@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -50,7 +49,7 @@ class DailyMealsFragment : Fragment() {
     }
     private fun initAction() {
 
-        _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.onItemClickListener{
+        _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.OnItemClickListener{
             override fun onItemClick(data:Category, position: Int) {
                 val category = data.strCategory
                 val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToListMealsFragment(category)
@@ -91,17 +90,17 @@ class DailyMealsFragment : Fragment() {
     }
     private fun initData() {
         dailyMealsViewModel.getCategory()
-        dailyMealsViewModel.responseLiveData.observe(viewLifecycleOwner, Observer{ data ->
+        dailyMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             _dailyMealsAdapter.setData(data as ArrayList<Category>)
-        })
+        }
 
         randomMealViewModel.getRandomMeal()
-        randomMealViewModel.responseLiveData.observe(viewLifecycleOwner, Observer { data ->
+        randomMealViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
                 mealRandom.addAll(data)
             }
             initViewRandom()
-        })
+        }
     }
     private fun initViewRandom() {
         val randomMeal: MealDetail? = this.mealRandom.firstOrNull()

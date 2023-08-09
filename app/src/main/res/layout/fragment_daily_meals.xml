@@ -82,7 +82,6 @@
         android:id="@+id/tv_desc"
         android:layout_width="@dimen/_0dp"
         android:layout_height="wrap_content"
-        android:text="@string/eggs_benedict"
         android:textColor="@color/white"
         android:textSize="@dimen/_18sp"
         android:textStyle="bold"
@@ -98,8 +97,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_25m"
         android:textSize="@dimen/_18sp"
+        android:text="@string/_25m"
         android:textColor="@color/white"
         android:drawablePadding="@dimen/_10dp"
         app:layout_constraintHorizontal_bias=".9"
@@ -110,7 +109,7 @@
         app:drawableStartCompat="@drawable/baseline_access_time_24" />
 
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/makeItBtn"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_0dp"
