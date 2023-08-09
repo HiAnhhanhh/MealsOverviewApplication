@@ -1,0 +1,38 @@
+package com.example.mealsoverviewapplication.repository
+
+import android.text.Editable
+import com.example.mealsoverviewapplication.apis.RetrofitBuilder
+import com.example.mealsoverviewapplication.models.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import okhttp3.Dispatcher
+
+class Repositories : RepositoriesInterface {
+
+    override fun getCategories(): Flow<Categories> = flow {
+            val response =  RetrofitBuilder.api.getCategories()
+            emit(response)
+        }.flowOn(Dispatchers.IO)
+
+    override fun getFilterMeals(letter: Editable?): Flow<ListFilterMeals> = flow {
+        val response = RetrofitBuilder.api.getFilterMeals(letter)
+        emit(response)
+    }.flowOn(Dispatchers.IO)
+
+    override fun getListMeals(category: String): Flow<ListMealByCategory> = flow {
+        val response = RetrofitBuilder.api.getListMeals(category)
+        emit(response)
+    }.flowOn(Dispatchers.IO)
+
+    override fun getRandomMeal(): Flow<RandomMeal> = flow {
+        val response = RetrofitBuilder.api.getRandomMeal()
+        emit(response)
+    }.flowOn(Dispatchers.IO)
+
+    override fun getViewMealDetail(mealId: String): Flow<ViewMealDetail> = flow {
+        val response = RetrofitBuilder.api.getMealDetail(mealId)
+        emit(response)
+    }.flowOn(Dispatchers.IO)
+}

@@ -45,8 +45,16 @@ class ViewDetailOfMealFragment : Fragment() {
 
         initObserver()
         initCheck()
+        initAction()
 
     }
+
+    private fun initAction() {
+        binding.imgBackBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
     private fun initCheck() {
         val mealId = args.mealId
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
@@ -66,10 +74,6 @@ class ViewDetailOfMealFragment : Fragment() {
     }
 
     private fun initAddFavourite(viewMealDetailList: ArrayList<MealDetail>) {
-
-        binding.imgBackBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         binding.tvAddToMyList.setOnClickListener { data ->
             data.isVisible = false
@@ -151,64 +155,64 @@ class ViewDetailOfMealFragment : Fragment() {
         val ms19 = viewMealDetail?.strMeasure19.toString()
         val ms20 = viewMealDetail?.strMeasure20.toString()
 
-        if (igd1.isNotEmpty()){
+        if (igd1.isNotBlank()){
             ingredientList.add(Ingredient(igd1,ms1))
         }
-        if (igd2.isNotEmpty()){
+        if (igd2.isNotBlank()){
             ingredientList.add(Ingredient(igd2,ms2))
         }
-        if (igd3.isNotEmpty()){
+        if (igd3.isNotBlank()){
             ingredientList.add(Ingredient(igd3,ms3))
         }
-        if (igd4.isNotEmpty()){
+        if (igd4.isNotBlank()){
             ingredientList.add(Ingredient(igd4,ms4))
         }
-        if (igd5.isNotEmpty()){
+        if (igd5.isNotBlank()){
             ingredientList.add(Ingredient(igd5,ms5))
         }
-        if (igd6.isNotEmpty()){
+        if (igd6.isNotBlank()){
             ingredientList.add(Ingredient(igd6,ms6))
         }
-        if (igd7.isNotEmpty()){
+        if (igd7.isNotBlank()){
             ingredientList.add(Ingredient(igd7,ms7))
         }
-        if (igd8.isNotEmpty()){
+        if (igd8.isNotBlank()){
             ingredientList.add(Ingredient(igd8,ms8))
         }
-        if (igd9.isNotEmpty()){
+        if (igd9.isNotBlank()){
             ingredientList.add(Ingredient(igd9,ms9))
         }
-        if (igd10.isNotEmpty()){
+        if (igd10.isNotBlank()){
             ingredientList.add(Ingredient(igd10,ms10))
         }
-        if (igd11.isNotEmpty()){
+        if (igd11.isNotBlank()){
             ingredientList.add(Ingredient(igd11,ms11))
         }
-        if (igd12.isNotEmpty()){
+        if (igd12.isNotBlank()){
             ingredientList.add(Ingredient(igd12,ms12))
         }
-        if (igd13.isNotEmpty()){
+        if (igd13.isNotBlank()){
             ingredientList.add(Ingredient(igd13,ms13))
         }
-        if (igd14.isNotEmpty()){
+        if (igd14.isNotBlank()){
             ingredientList.add(Ingredient(igd14,ms14))
         }
-        if (igd15.isNotEmpty()){
+        if (igd15.isNotBlank()){
             ingredientList.add(Ingredient(igd15,ms15))
         }
-        if (igd16.isNotEmpty()){
+        if (igd16.isNotBlank()){
             ingredientList.add(Ingredient(igd16,ms16))
         }
-        if (igd17.isNotEmpty()){
+        if (igd17.isNotBlank()){
             ingredientList.add(Ingredient(igd17,ms17))
         }
-        if (igd18.isNotEmpty()){
+        if (igd18.isNotBlank()){
             ingredientList.add(Ingredient(igd18,ms18))
         }
-        if (igd19.isNotEmpty()){
+        if (igd19.isNotBlank()){
             ingredientList.add(Ingredient(igd19,ms19))
         }
-        if (igd20.isNotEmpty()){
+        if (igd20.isNotBlank()){
             ingredientList.add(Ingredient(igd20,ms20))
         }
 //        val ingredientList: ArrayList<Ingredient> = arrayListOf(Ingredient(igd1,ms1),Ingredient(igd2,ms2),

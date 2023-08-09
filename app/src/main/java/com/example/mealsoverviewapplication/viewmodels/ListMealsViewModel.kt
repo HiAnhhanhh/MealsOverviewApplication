@@ -5,13 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mealsoverviewapplication.models.Meal
-import com.example.mealsoverviewapplication.repository.ListMealsRepository
+import com.example.mealsoverviewapplication.repository.Repositories
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class ListMealsViewModel : ViewModel() {
 
     val responseLiveData : MutableLiveData<List<Meal>?> = MutableLiveData()
+    val repository = Repositories()
 
 //    fun onFavoriteItem(id: String) {
 //        val oldData = responseLiveData
@@ -23,7 +24,7 @@ class ListMealsViewModel : ViewModel() {
 
     fun getListMeals (category: String){
         viewModelScope.launch {
-            ListMealsRepository.getListMeals(category)
+            repository.getListMeals(category)
                 .catch { e ->
                     Log.d("check_listMeals", "getListMeals: ${e.message}")
                 }
