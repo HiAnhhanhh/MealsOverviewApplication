@@ -12,9 +12,6 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
     private var _filterMealsArrayList : ArrayList<MealDetailModel> = arrayListOf()
     private lateinit var mListener : OnItemClickListener
 
-    fun clearData(){
-        _filterMealsArrayList.clear()
-    }
 
     fun setData (data: ArrayList<MealDetailModel>){
         _filterMealsArrayList.clear()

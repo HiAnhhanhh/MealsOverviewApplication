@@ -3,6 +3,7 @@ package com.example.mealsoverviewapplication
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,15 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mealsoverviewapplication.adapters.FavouriteMealsAdapter
 import com.example.mealsoverviewapplication.adapters.FilterMealsAdapter
+import com.example.mealsoverviewapplication.adapters.ListMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentSearchMealsBinding
 import com.example.mealsoverviewapplication.mapper.MealDetailModel
+import com.example.mealsoverviewapplication.models.ListFilterMeals
 import com.example.mealsoverviewapplication.viewmodels.FilterMealsViewModel
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlin.collections.ArrayList
 
 class SearchMealsFragment : Fragment() {
@@ -26,7 +32,7 @@ class SearchMealsFragment : Fragment() {
     private val filterMealsViewModel by viewModels<FilterMealsViewModel>()
 
     private val filterMealsAdapter by lazy {
-        FilterMealsAdapter()
+        ListMealsAdapter()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,11 +74,42 @@ class SearchMealsFragment : Fragment() {
                 filterMealsList(s)
             }
         })
-        filterMealsAdapter.setOnItemClickListener(object : FilterMealsAdapter.OnItemClickListener {
+        filterMealsAdapter.setOnItemClickListener(object : ListMealsAdapter.OnItemClickListener {
             override fun onItemClick(data:MealDetailModel, position: Int) {
                 val mealId = data.idMeal.toString()
                 val direction = SearchMealsFragmentDirections.searchMealsFragmentActionToViewDetailOfMealFragment(mealId)
                 findNavController().navigate(direction)
+            }
+
+            override fun onClickFavorite(data: MealDetailModel, position: Int) {
+                val check = "true"
+                val timeStamp = System.currentTimeMillis().toString()
+                val mealId = data.idMeal.toString()
+                val strThumb = data.strThumb.toString()
+                val strMeal = data.strMeal.toString()
+
+                val hashMap: HashMap<String, String> = HashMap()
+                hashMap[Constants.MEAL_ID] = mealId
+                hashMap[Constants.STR_MEAL] = strMeal
+                hashMap[Constants.STR_THUMB] = strThumb
+                hashMap[Constants.TIMESTAMP] = timeStamp
+                hashMap[Constants.CHECK]= check
+
+                val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
+                ref.child(mealId).setValue(hashMap)
+                    .addOnSuccessListener {
+                    }
+                    .addOnFailureListener { e ->
+                        Log.d("check_false", "insertData: "+ e.message)
+                    }
+            }
+
+            override fun onClickAddedFavorite(data: MealDetailModel, position: Int) {
+                val mealId = data.idMeal.toString()
+                val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
+                ref.child(mealId).removeValue()
+                    .addOnSuccessListener {
+                    }
             }
         })
     }
