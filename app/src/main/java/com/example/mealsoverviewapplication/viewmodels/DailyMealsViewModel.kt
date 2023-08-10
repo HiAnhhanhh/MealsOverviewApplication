@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mealsoverviewapplication.mapper.CategoryModel
+import com.example.mealsoverviewapplication.mapper.toModel
 import com.example.mealsoverviewapplication.models.Category
 import com.example.mealsoverviewapplication.repository.Repositories
 import kotlinx.coroutines.flow.catch
@@ -11,7 +13,7 @@ import kotlinx.coroutines.launch
 
 
 class DailyMealsViewModel : ViewModel() {
-    val responseLiveData : MutableLiveData<List<Category>?> = MutableLiveData()
+    val responseLiveData : MutableLiveData<List<CategoryModel>?> = MutableLiveData()
     val repository = Repositories()
     fun getCategory () {
         viewModelScope.launch {
@@ -21,16 +23,12 @@ class DailyMealsViewModel : ViewModel() {
                     Log.d("check_data", "getCategories: ${e.message}")
                 }
                 .collect { data ->
-                    responseLiveData.value = data.categories
+                    responseLiveData.value = data.categories?.map { item ->
+                        item.toModel()
+                    }
                 }
         }
     }
-//    fun checkCategoryType(type: String): CategoryTypes {
-//        return when(type) {
-//            "pho" -> CategoryTypes.PHO
-//            else -> {CategoryTypes.GA}
-//        }
-//    }
 }
 
 

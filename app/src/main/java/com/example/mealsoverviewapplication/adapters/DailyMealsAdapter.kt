@@ -6,30 +6,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
+import com.example.mealsoverviewapplication.mapper.CategoryModel
 import com.example.mealsoverviewapplication.models.Category
 
 class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
-    private val _dailyMealsArrayList: ArrayList<Category> = arrayListOf()
+    private val _dailyMealsArrayList: ArrayList<CategoryModel> = arrayListOf()
     private lateinit var mListener : OnItemClickListener
     interface OnItemClickListener {
-        fun onItemClick (data: Category, position: Int)
-        fun onItemClickFavorite (data:Category, position: Int)
+        fun onItemClick (data: CategoryModel, position: Int)
+        fun onItemClickFavorite (data: CategoryModel, position: Int)
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
     }
 
-    fun setData (data: ArrayList<Category>) {
+    fun setData (data: ArrayList<CategoryModel>) {
         _dailyMealsArrayList.clear()
         _dailyMealsArrayList.addAll(data)
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindViewHolder (data : Category, position: Int, listener: OnItemClickListener){
+        fun bindViewHolder (data : CategoryModel, position: Int, listener: OnItemClickListener){
             binding.tvTitle.text = data.strCategory
-            binding.tvDes.text = data.strCategoryDescription
+            binding.tvDes.text = data.strCategoryDes
             Glide.with(binding.imvDailyMeal).load(data.strCategoryThumb).into(binding.imvDailyMeal)
 
             binding.root.setOnClickListener {

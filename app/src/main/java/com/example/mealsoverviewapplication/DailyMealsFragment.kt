@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.adapters.DailyMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentDailyMealsBinding
+import com.example.mealsoverviewapplication.mapper.CategoryModel
 import com.example.mealsoverviewapplication.models.Category
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.DailyMealsViewModel
@@ -44,31 +45,31 @@ class DailyMealsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-        initData()
+        initObserve()
         initAction()
     }
     private fun initAction() {
 
         _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.OnItemClickListener{
-            override fun onItemClick(data:Category, position: Int) {
-                val category = data.strCategory
+            override fun onItemClick(data: CategoryModel, position: Int) {
+                val category = data.strCategory.toString()
                 val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToListMealsFragment(category)
                 findNavController().navigate(direction)
             }
 
-            override fun onItemClickFavorite(data:Category, position: Int) {
+            override fun onItemClickFavorite(data:CategoryModel, position: Int) {
                 val check = "true"
                 val timeStamp = System.currentTimeMillis().toString()
                 val hashMap: HashMap<String, Any> = HashMap()
-                hashMap[Constants.STR_CATEGORY_ID] = data.idCategory
-                hashMap[Constants.STR_CATEGORY] = data.strCategory
-                hashMap[Constants.STR_CATEGORY_THUMB] = data.strCategoryThumb
-                hashMap[Constants.DESCRIPTION] = data.strCategoryDescription
+                hashMap[Constants.STR_CATEGORY_ID] = data.categoryId.toString()
+                hashMap[Constants.STR_CATEGORY] = data.strCategory.toString()
+                hashMap[Constants.STR_CATEGORY_THUMB] = data.strCategoryThumb.toString()
+                hashMap[Constants.DESCRIPTION] = data.strCategoryDes.toString()
                 hashMap[Constants.TIMESTAMP] = timeStamp
                 hashMap[Constants.CHECK]= check
 
                 val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
-                ref.child(data.idCategory).setValue(hashMap)
+                ref.child(data.categoryId.toString()).setValue(hashMap)
                     .addOnSuccessListener {
                     }
                     .addOnFailureListener { e ->
@@ -88,10 +89,10 @@ class DailyMealsFragment : Fragment() {
         }
 
     }
-    private fun initData() {
+    private fun initObserve() {
         dailyMealsViewModel.getCategory()
         dailyMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
-            _dailyMealsAdapter.setData(data as ArrayList<Category>)
+            _dailyMealsAdapter.setData(data as ArrayList<CategoryModel>)
         }
 
         randomMealViewModel.getRandomMeal()
@@ -113,7 +114,6 @@ class DailyMealsFragment : Fragment() {
         val calendar: Calendar = Calendar.getInstance()
         val currentDate : String  = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         binding.tvDate.text = currentDate
-
         binding.recDailyMeal.layoutManager = LinearLayoutManager(context)
         binding.recDailyMeal.adapter = _dailyMealsAdapter
 

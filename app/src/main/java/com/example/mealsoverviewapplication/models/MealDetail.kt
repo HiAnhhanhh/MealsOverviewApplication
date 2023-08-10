@@ -113,3 +113,7 @@ data class MealDetail(
     @SerialName("strYoutube")
     val strYoutube: String=""
 )
+
+
+
+

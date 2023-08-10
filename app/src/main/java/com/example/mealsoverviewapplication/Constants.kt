@@ -10,4 +10,5 @@ object Constants {
     const val STR_CATEGORY = "strCategory"
     const val STR_CATEGORY_THUMB = "strCategoryThumb"
     const val DESCRIPTION = "description"
+    const val EMPTY_STRING = ""
 }
