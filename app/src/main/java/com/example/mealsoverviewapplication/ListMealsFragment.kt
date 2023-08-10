@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.adapters.ListMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentListMealsBinding
-import com.example.mealsoverviewapplication.models.Meal
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 import com.example.mealsoverviewapplication.viewmodels.ListMealsViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -31,7 +31,7 @@ class ListMealsFragment : Fragment() {
 
     private val args : ListMealsFragmentArgs by navArgs()
 
-    private var listMeals : ArrayList<Meal> = arrayListOf()
+    private var listMeals : ArrayList<MealDetailModel> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,18 +55,18 @@ class ListMealsFragment : Fragment() {
         }
 
         listMealsAdapter.setOnItemClickListener(object : ListMealsAdapter.OnItemClickListener{
-            override fun onItemClick(data: Meal, position: Int) {
+            override fun onItemClick(data: MealDetailModel, position: Int) {
                 val mealId = data.idMeal
-                val directions = ListMealsFragmentDirections.listMealsFragmentActionViewDetailOfMealFragment(mealId)
+                val directions = ListMealsFragmentDirections.listMealsFragmentActionViewDetailOfMealFragment(mealId.toString())
                 findNavController().navigate(directions)
             }
 
-            override fun onClickFavorite(data:Meal, position: Int) {
+            override fun onClickFavorite(data:MealDetailModel, position: Int) {
                 val check = "true"
                 val timeStamp = System.currentTimeMillis().toString()
-                val mealId = data.idMeal
-                val strThumb = data.strMealThumb
-                val strMeal = data.strMeal
+                val mealId = data.idMeal.toString()
+                val strThumb = data.strThumb.toString()
+                val strMeal = data.strMeal.toString()
 
                 val hashMap: HashMap<String, String> = HashMap()
                 hashMap[Constants.MEAL_ID] = mealId
@@ -84,8 +84,8 @@ class ListMealsFragment : Fragment() {
                     }
             }
 
-            override fun onClickAddedFavorite(data:Meal, position: Int) {
-                val mealId = data.idMeal
+            override fun onClickAddedFavorite(data:MealDetailModel, position: Int) {
+                val mealId = data.idMeal.toString()
                 val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
                 ref.child(mealId).removeValue()
                     .addOnSuccessListener {
@@ -103,7 +103,7 @@ class ListMealsFragment : Fragment() {
         listMealsViewModel.getListMeals(category)
         listMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
-                listMeals.addAll(data as ArrayList<Meal>)
+                listMeals.addAll(data as ArrayList<MealDetailModel>)
                 listMealsAdapter.setData(listMeals)
             }
         }

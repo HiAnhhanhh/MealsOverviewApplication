@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.adapters.IngredientsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentViewDetailOfMealBinding
+import com.example.mealsoverviewapplication.mapper.IngredientModel
 import com.example.mealsoverviewapplication.models.Ingredient
-import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.viewmodels.ViewMealDetailViewModel
 import com.google.firebase.database.*
 
@@ -29,7 +29,7 @@ class ViewDetailOfMealFragment : Fragment() {
     private val viewMealDetailViewModel by viewModels<ViewMealDetailViewModel>()
     private var check =""
 
-    private var viewMealDetailList: ArrayList<MealDetail> = arrayListOf()
+    private var viewMealDetailList: ArrayList<IngredientModel> = arrayListOf()
     private var timeStamp: String = ""
     private val args: ViewDetailOfMealFragmentArgs by navArgs()
 
@@ -73,7 +73,7 @@ class ViewDetailOfMealFragment : Fragment() {
         })
     }
 
-    private fun initAddFavourite(viewMealDetailList: ArrayList<MealDetail>) {
+    private fun initAddFavourite(viewMealDetailList: ArrayList<IngredientModel>) {
 
         binding.tvAddToMyList.setOnClickListener { data ->
             data.isVisible = false
@@ -110,50 +110,50 @@ class ViewDetailOfMealFragment : Fragment() {
             }
         }
     }
-    private fun initViewIngredients(viewMealDetailList: ArrayList<MealDetail>) {
-        val ingredientList : ArrayList<Ingredient> = arrayListOf()
-        val viewMealDetail: MealDetail? = viewMealDetailList.firstOrNull()
-        val igd1 = viewMealDetail?.strIngredient1.toString()
-        val igd2 = viewMealDetail?.strIngredient2.toString()
-        val igd3 = viewMealDetail?.strIngredient3.toString()
-        val igd4 = viewMealDetail?.strIngredient4.toString()
-        val igd5 = viewMealDetail?.strIngredient5.toString()
-        val igd6 = viewMealDetail?.strIngredient6.toString()
-        val igd7 = viewMealDetail?.strIngredient7.toString()
-        val igd8 = viewMealDetail?.strIngredient8.toString()
-        val igd9 = viewMealDetail?.strIngredient9.toString()
-        val igd10 = viewMealDetail?.strIngredient10.toString()
-        val igd11 = viewMealDetail?.strIngredient11.toString()
-        val igd12 = viewMealDetail?.strIngredient12.toString()
-        val igd13 = viewMealDetail?.strIngredient13.toString()
-        val igd14 = viewMealDetail?.strIngredient14.toString()
-        val igd15 = viewMealDetail?.strIngredient15.toString()
-        val igd16 = viewMealDetail?.strIngredient16.toString()
-        val igd17 = viewMealDetail?.strIngredient17.toString()
-        val igd18 = viewMealDetail?.strIngredient18.toString()
-        val igd19 = viewMealDetail?.strIngredient19.toString()
-        val igd20 = viewMealDetail?.strIngredient20.toString()
+    private fun initViewIngredients(viewMealDetailList: ArrayList<IngredientModel>) {
+        val ingredientList: ArrayList<Ingredient> = arrayListOf()
+        val viewMealDetail: IngredientModel? = viewMealDetailList.firstOrNull()
+        val igd1 = viewMealDetail?.ingredient1.toString()
+        val igd2 = viewMealDetail?.ingredient2.toString()
+        val igd3 = viewMealDetail?.ingredient3.toString()
+        val igd4 = viewMealDetail?.ingredient4.toString()
+        val igd5 = viewMealDetail?.ingredient5.toString()
+        val igd6 = viewMealDetail?.ingredient6.toString()
+        val igd7 = viewMealDetail?.ingredient7.toString()
+        val igd8 = viewMealDetail?.ingredient8.toString()
+        val igd9 = viewMealDetail?.ingredient9.toString()
+        val igd10 = viewMealDetail?.ingredient10.toString()
+        val igd11 = viewMealDetail?.ingredient11.toString()
+        val igd12 = viewMealDetail?.ingredient12.toString()
+        val igd13 = viewMealDetail?.ingredient13.toString()
+        val igd14 = viewMealDetail?.ingredient14.toString()
+        val igd15 = viewMealDetail?.ingredient15.toString()
+        val igd16 = viewMealDetail?.ingredient16.toString()
+        val igd17 = viewMealDetail?.ingredient17.toString()
+        val igd18 = viewMealDetail?.ingredient18.toString()
+        val igd19 = viewMealDetail?.ingredient19.toString()
+        val igd20 = viewMealDetail?.ingredient20.toString()
 
-        val ms1 = viewMealDetail?.strMeasure1.toString()
-        val ms2 = viewMealDetail?.strMeasure2.toString()
-        val ms3 = viewMealDetail?.strMeasure3.toString()
-        val ms4 = viewMealDetail?.strMeasure4.toString()
-        val ms5 = viewMealDetail?.strMeasure5.toString()
-        val ms6 = viewMealDetail?.strMeasure6.toString()
-        val ms7 = viewMealDetail?.strMeasure7.toString()
-        val ms8 = viewMealDetail?.strMeasure8.toString()
-        val ms9 = viewMealDetail?.strMeasure9.toString()
-        val ms10 = viewMealDetail?.strMeasure10.toString()
-        val ms11 = viewMealDetail?.strMeasure11.toString()
-        val ms12 = viewMealDetail?.strMeasure12.toString()
-        val ms13 = viewMealDetail?.strMeasure13.toString()
-        val ms14 = viewMealDetail?.strMeasure14.toString()
-        val ms15 = viewMealDetail?.strMeasure15.toString()
-        val ms16 = viewMealDetail?.strMeasure16.toString()
-        val ms17 = viewMealDetail?.strMeasure17.toString()
-        val ms18 = viewMealDetail?.strMeasure18.toString()
-        val ms19 = viewMealDetail?.strMeasure19.toString()
-        val ms20 = viewMealDetail?.strMeasure20.toString()
+        val ms1 = viewMealDetail?.measure1.toString()
+        val ms2 = viewMealDetail?.measure2.toString()
+        val ms3 = viewMealDetail?.measure3.toString()
+        val ms4 = viewMealDetail?.measure4.toString()
+        val ms5 = viewMealDetail?.measure5.toString()
+        val ms6 = viewMealDetail?.measure6.toString()
+        val ms7 = viewMealDetail?.measure7.toString()
+        val ms8 = viewMealDetail?.measure8.toString()
+        val ms9 = viewMealDetail?.measure9.toString()
+        val ms10 = viewMealDetail?.measure10.toString()
+        val ms11 = viewMealDetail?.measure11.toString()
+        val ms12 = viewMealDetail?.measure12.toString()
+        val ms13 = viewMealDetail?.measure13.toString()
+        val ms14 = viewMealDetail?.measure14.toString()
+        val ms15 = viewMealDetail?.measure15.toString()
+        val ms16 = viewMealDetail?.measure16.toString()
+        val ms17 = viewMealDetail?.measure17.toString()
+        val ms18 = viewMealDetail?.measure18.toString()
+        val ms19 = viewMealDetail?.measure19.toString()
+        val ms20 = viewMealDetail?.measure20.toString()
 
         if (igd1.isNotBlank()){
             ingredientList.add(Ingredient(igd1,ms1))
@@ -239,20 +239,20 @@ class ViewDetailOfMealFragment : Fragment() {
         binding.ingredientRec.adapter = ingredientAdapter
     }
 
-    private fun initViewDetail(viewMealDetailList: ArrayList<MealDetail>) {
-        val viewMealDetail: MealDetail? = viewMealDetailList.firstOrNull()
+    private fun initViewDetail(viewMealDetailList: ArrayList<IngredientModel>) {
+        val viewMealDetail: IngredientModel? = viewMealDetailList.firstOrNull()
         binding.tvMealDetail.text = viewMealDetail?.strMeal
-        Glide.with(binding.imgThumb).load(viewMealDetail?.strMealThumb).into(binding.imgThumb)
-        binding.tvStep.text = viewMealDetail?.strInstructions
+        Glide.with(binding.imgThumb).load(viewMealDetail?.strThumb).into(binding.imgThumb)
+        binding.tvStep.text = viewMealDetail?.strIns
     }
 
-    private fun insertData(viewMealDetailList: ArrayList<MealDetail>) {
+    private fun insertData(viewMealDetailList: ArrayList<IngredientModel>) {
         val check = "true"
         timeStamp = System.currentTimeMillis().toString()
-        val viewMealDetail : MealDetail? = viewMealDetailList.firstOrNull()
+        val viewMealDetail : IngredientModel? = viewMealDetailList.firstOrNull()
         val strMeal = viewMealDetail?.strMeal
         val idMeal = viewMealDetail?.idMeal
-        val strMealThumb = viewMealDetail?.strMealThumb
+        val strMealThumb = viewMealDetail?.strThumb
 
         val hashMap: HashMap<String, String> = HashMap()
         hashMap[Constants.MEAL_ID] = idMeal.toString()

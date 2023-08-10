@@ -5,13 +5,15 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
+import com.example.mealsoverviewapplication.mapper.toModel
 import com.example.mealsoverviewapplication.models.MealDetail
 import com.example.mealsoverviewapplication.repository.Repositories
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 class FilterMealsViewModel : ViewModel() {
-    var responseLiveData : MutableLiveData<List<MealDetail>?> = MutableLiveData()
+    var responseLiveData : MutableLiveData<List<MealDetailModel>?> = MutableLiveData()
     val repository = Repositories()
 
     fun getFilterMeals (letter: Editable?){
@@ -21,7 +23,9 @@ class FilterMealsViewModel : ViewModel() {
                     Log.d("check_data_filterMeals", "getFilterMeals: ${e.message} ")
                 }
                 .collect { data ->
-                    responseLiveData.value = data.meals
+                    responseLiveData.value = data.meals?.map { item ->
+                        item.toModel()
+                    }
                 }
         }
     }

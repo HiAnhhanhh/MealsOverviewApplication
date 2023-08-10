@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
+import com.example.mealsoverviewapplication.mapper.toModel
 import com.example.mealsoverviewapplication.models.Meal
 import com.example.mealsoverviewapplication.repository.Repositories
 import kotlinx.coroutines.flow.catch
@@ -11,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class ListMealsViewModel : ViewModel() {
 
-    val responseLiveData : MutableLiveData<List<Meal>?> = MutableLiveData()
+    val responseLiveData : MutableLiveData<List<MealDetailModel>?> = MutableLiveData()
     val repository = Repositories()
 
 //    fun onFavoriteItem(id: String) {
@@ -29,7 +31,9 @@ class ListMealsViewModel : ViewModel() {
                     Log.d("check_listMeals", "getListMeals: ${e.message}")
                 }
                 .collect { data ->
-                    responseLiveData.value = data.meals
+                    responseLiveData.value = data.meals?.map { item ->
+                        item.toModel()
+                    }
                 }
         }
     }

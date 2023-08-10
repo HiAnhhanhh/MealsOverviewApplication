@@ -5,26 +5,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
-import com.example.mealsoverviewapplication.models.Meal
-import com.example.mealsoverviewapplication.models.MealDetail
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 
 class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsViewHolder>() {
 
-    private var _filterMealsArrayList : ArrayList<MealDetail> = arrayListOf()
+    private var _filterMealsArrayList : ArrayList<MealDetailModel> = arrayListOf()
     private lateinit var mListener : OnItemClickListener
 
     fun clearData(){
         _filterMealsArrayList.clear()
     }
 
-    fun setData (data: ArrayList<MealDetail>){
+    fun setData (data: ArrayList<MealDetailModel>){
         _filterMealsArrayList.clear()
         _filterMealsArrayList.addAll(data)
         notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun onItemClick (data: MealDetail, position: Int)
+        fun onItemClick (data: MealDetailModel, position: Int)
     }
 
     fun setOnItemClickListener (listener: OnItemClickListener){
@@ -32,11 +31,10 @@ class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ItemMealsView
     }
 
     class ItemMealsViewHolder(private val binding : ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindView (data: MealDetail, position: Int, listener: OnItemClickListener){
+        fun bindView (data: MealDetailModel, position: Int, listener: OnItemClickListener){
             binding.apply {
                 tvTitle.text = data.strMeal
-                tvDes.text = data.strInstructions
-                Glide.with(binding.imvDailyMeal).load(data.strMealThumb).into(binding.imvDailyMeal)
+                Glide.with(binding.imvDailyMeal).load(data.strThumb).into(binding.imvDailyMeal)
             }
             binding.root.setOnClickListener {
                 listener.onItemClick(data,position)

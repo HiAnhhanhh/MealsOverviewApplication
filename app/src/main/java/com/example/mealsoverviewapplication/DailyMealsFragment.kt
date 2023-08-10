@@ -13,8 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.adapters.DailyMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentDailyMealsBinding
 import com.example.mealsoverviewapplication.mapper.CategoryModel
-import com.example.mealsoverviewapplication.models.Category
-import com.example.mealsoverviewapplication.models.MealDetail
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 import com.example.mealsoverviewapplication.viewmodels.DailyMealsViewModel
 import com.example.mealsoverviewapplication.viewmodels.RandomMealViewModel
 import com.google.firebase.database.DatabaseReference
@@ -34,7 +33,7 @@ class DailyMealsFragment : Fragment() {
     private val dailyMealsViewModel by viewModels<DailyMealsViewModel> ()
     private val randomMealViewModel by viewModels<RandomMealViewModel>()
 
-    private var mealRandom: ArrayList<MealDetail> = arrayListOf()
+    private var mealRandom: ArrayList<MealDetailModel> = arrayListOf()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,7 +77,7 @@ class DailyMealsFragment : Fragment() {
             }
         })
         binding.makeItBtn.setOnClickListener {
-            val randomMeal : MealDetail? = this.mealRandom.firstOrNull()
+            val randomMeal : MealDetailModel? = this.mealRandom.firstOrNull()
             val mealId = randomMeal?.idMeal.toString()
             val directions = DailyMealsFragmentDirections.dailyMealsFragmentActionToViewDetailFragment(mealId)
             findNavController().navigate(directions)
@@ -104,10 +103,10 @@ class DailyMealsFragment : Fragment() {
         }
     }
     private fun initViewRandom() {
-        val randomMeal: MealDetail? = this.mealRandom.firstOrNull()
+        val randomMeal: MealDetailModel? = this.mealRandom.firstOrNull()
         if (randomMeal != null) {
             binding.tvDesc.text = randomMeal.strMeal
-            Glide.with(binding.shapeAbleImageView).load(randomMeal.strMealThumb).into(binding.shapeAbleImageView)
+            Glide.with(binding.shapeAbleImageView).load(randomMeal.strThumb).into(binding.shapeAbleImageView)
         }
     }
     private fun initView() {

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.adapters.FavouriteMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentFavouriteListMealsBinding
-import com.example.mealsoverviewapplication.models.MealDetail
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 import com.google.firebase.database.*
 
 
@@ -24,7 +24,7 @@ class FavouriteListMealsFragment : Fragment() {
         FavouriteMealsAdapter()
     }
 
-    private var favouriteListMeals: ArrayList<MealDetail> = arrayListOf()
+    private var favouriteListMeals: ArrayList<MealDetailModel> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +47,8 @@ class FavouriteListMealsFragment : Fragment() {
             findNavController().popBackStack()
         }
         _favouriteAdapter.setOnItemClickListener(object : FavouriteMealsAdapter.OnItemClickListener{
-            override fun onItemClick(data:MealDetail, position: Int) {
-                val mealId = data.idMeal
+            override fun onItemClick(data:MealDetailModel, position: Int) {
+                val mealId = data.idMeal.toString()
                 val direction = FavouriteListMealsFragmentDirections.favoriteListMealsFragmentActionToViewDetailOfMealFragment(mealId)
                 findNavController().navigate(direction)
             }
@@ -67,13 +67,13 @@ class FavouriteListMealsFragment : Fragment() {
                 favouriteListMeals.clear()
                 if (snapshot.exists()){
                     for (favouriteSnapshot in snapshot.children){
-                        val favouriteModel = favouriteSnapshot.getValue(MealDetail::class.java)
+                        val favouriteModel = favouriteSnapshot.getValue(MealDetailModel::class.java)
                         if (favouriteModel != null) {
                             favouriteListMeals.add(favouriteModel)
                         }
                     }
+                    Log.d("check_null", "onDataChange: "+ favouriteListMeals)
                     _favouriteAdapter.setData(favouriteListMeals)
-                    Log.d("check_fvlist", "onDataChange: "+ favouriteListMeals)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
@@ -82,3 +82,5 @@ class FavouriteListMealsFragment : Fragment() {
         })
     }
 }
+
+

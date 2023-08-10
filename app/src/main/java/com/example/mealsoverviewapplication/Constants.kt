@@ -1,8 +1,8 @@
 package com.example.mealsoverviewapplication
 
 object Constants {
-    const val MEAL_ID = "mealId"
-    const val STR_THUMB = "strMealThumb"
+    const val MEAL_ID = "idMeal"
+    const val STR_THUMB = "strThumb"
     const val CHECK = "check"
     const val STR_MEAL = "strMeal"
     const val TIMESTAMP = "timestamp"

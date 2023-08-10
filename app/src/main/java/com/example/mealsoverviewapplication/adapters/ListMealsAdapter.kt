@@ -6,23 +6,23 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
-import com.example.mealsoverviewapplication.models.Meal
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 
 
 class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
-    private var _listMealsArrayList : ArrayList<Meal> = arrayListOf()
+    private var _listMealsArrayList : ArrayList<MealDetailModel> = arrayListOf()
     private lateinit var mListener : OnItemClickListener
 
-    fun setData (data: ArrayList<Meal>){
+    fun setData (data: ArrayList<MealDetailModel>){
         _listMealsArrayList.clear()
         _listMealsArrayList.addAll(data)
         notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun onItemClick (data: Meal, position: Int)
-        fun onClickFavorite(data: Meal, position: Int)
-        fun onClickAddedFavorite(data: Meal, position: Int)
+        fun onItemClick (data: MealDetailModel, position: Int)
+        fun onClickFavorite(data: MealDetailModel, position: Int)
+        fun onClickAddedFavorite(data: MealDetailModel, position: Int)
     }
 
     fun setOnItemClickListener (listener: OnItemClickListener){
@@ -31,10 +31,10 @@ class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind (data: Meal, position: Int, listener: OnItemClickListener){
+        fun bind (data: MealDetailModel, position: Int, listener: OnItemClickListener){
             binding.apply {
                 tvTitle.text = data.strMeal
-                Glide.with(binding.imvDailyMeal).load(data.strMealThumb).into(binding.imvDailyMeal)
+                Glide.with(binding.imvDailyMeal).load(data.strThumb).into(binding.imvDailyMeal)
             }
 
             binding.root.setOnClickListener {
@@ -44,11 +44,13 @@ class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
             binding.imgFavorite.setOnClickListener {
                 binding.imgFavorite.isVisible = false
                 binding.imgAddedFavorite.isVisible = true
+                listener.onClickFavorite(data,position)
             }
 
             binding.imgAddedFavorite.setOnClickListener {
                 binding.imgAddedFavorite.isVisible = false
                 binding.imgFavorite.isVisible = true
+                listener.onClickAddedFavorite(data,position)
             }
         }
     }

@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.adapters.FilterMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentSearchMealsBinding
-import com.example.mealsoverviewapplication.models.MealDetail
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 import com.example.mealsoverviewapplication.viewmodels.FilterMealsViewModel
 import kotlin.collections.ArrayList
 
@@ -46,7 +46,7 @@ class SearchMealsFragment : Fragment() {
     private fun initObserver() {
         filterMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             if (data != null){
-                filterMealsAdapter.setData(data as ArrayList<MealDetail>)
+                filterMealsAdapter.setData(data as ArrayList<MealDetailModel>)
             }
         }
     }
@@ -69,8 +69,8 @@ class SearchMealsFragment : Fragment() {
             }
         })
         filterMealsAdapter.setOnItemClickListener(object : FilterMealsAdapter.OnItemClickListener {
-            override fun onItemClick(data:MealDetail, position: Int) {
-                val mealId = data.idMeal
+            override fun onItemClick(data:MealDetailModel, position: Int) {
+                val mealId = data.idMeal.toString()
                 val direction = SearchMealsFragmentDirections.searchMealsFragmentActionToViewDetailOfMealFragment(mealId)
                 findNavController().navigate(direction)
             }

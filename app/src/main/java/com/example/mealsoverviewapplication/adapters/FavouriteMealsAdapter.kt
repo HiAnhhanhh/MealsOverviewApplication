@@ -6,31 +6,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
+import com.example.mealsoverviewapplication.mapper.MealDetailModel
 import com.example.mealsoverviewapplication.models.MealDetail
 
 class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHolder>() {
 
-    private val _favouriteMealsArrayList: ArrayList<MealDetail> = arrayListOf()
+    private val _favouriteMealsArrayList: ArrayList<MealDetailModel> = arrayListOf()
 
     private lateinit var mListener : OnItemClickListener
 
     interface OnItemClickListener {
-        fun onItemClick (data: MealDetail, position: Int)
+        fun onItemClick (data: MealDetailModel, position: Int)
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
     }
 
-    fun setData(data: ArrayList<MealDetail>){
+    fun setData(data: ArrayList<MealDetailModel>){
         _favouriteMealsArrayList.clear()
         _favouriteMealsArrayList.addAll(data)
         notifyDataSetChanged()
     }
     class ViewHolder(private val binding: ItemDailyMealBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind (data: MealDetail, position: Int, listener: OnItemClickListener){
+        fun bind (data: MealDetailModel, position: Int, listener: OnItemClickListener){
             binding.tvTitle.text = data.strMeal
-            Glide.with(binding.imvDailyMeal).load(data.strMealThumb).into(binding.imvDailyMeal)
+            Glide.with(binding.imvDailyMeal).load(data.strThumb).into(binding.imvDailyMeal)
 
             binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_red_24)
             binding.root.setOnClickListener {
