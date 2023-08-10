@@ -12,12 +12,9 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.mealsoverviewapplication.adapters.FavouriteMealsAdapter
-import com.example.mealsoverviewapplication.adapters.FilterMealsAdapter
 import com.example.mealsoverviewapplication.adapters.ListMealsAdapter
 import com.example.mealsoverviewapplication.databinding.FragmentSearchMealsBinding
 import com.example.mealsoverviewapplication.mapper.MealDetailModel
-import com.example.mealsoverviewapplication.models.ListFilterMeals
 import com.example.mealsoverviewapplication.viewmodels.FilterMealsViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
