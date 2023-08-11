@@ -55,7 +55,6 @@ class DailyMealsFragment : Fragment() {
                 val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToListMealsFragment(category)
                 findNavController().navigate(direction)
             }
-
             override fun onItemClickFavorite(data:CategoryModel, position: Int) {
                 val check = "true"
                 val timeStamp = System.currentTimeMillis().toString()
