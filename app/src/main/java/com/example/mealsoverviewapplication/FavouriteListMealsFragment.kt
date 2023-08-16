@@ -1,7 +1,6 @@
 package com.example.mealsoverviewapplication
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -58,8 +57,6 @@ class FavouriteListMealsFragment : Fragment() {
         binding.favoriteRec.layoutManager = LinearLayoutManager(context)
         binding.favoriteRec.adapter = _favouriteAdapter
     }
-
-
     private fun initData() {
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
         ref.addValueEventListener(object :ValueEventListener{
@@ -72,7 +69,7 @@ class FavouriteListMealsFragment : Fragment() {
                             favouriteListMeals.add(favouriteModel)
                         }
                     }
-                    Log.d("check_null", "onDataChange: "+ favouriteListMeals)
+//                    Log.d("check_null", "onDataChange: "+ favouriteListMeals)
                     _favouriteAdapter.setData(favouriteListMeals)
                 }
             }

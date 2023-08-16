@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.mapper.MealDetailModel
-import com.example.mealsoverviewapplication.models.MealDetail
 
 class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHolder>() {
 
@@ -18,7 +17,6 @@ class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHo
     interface OnItemClickListener {
         fun onItemClick (data: MealDetailModel, position: Int)
     }
-
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
     }
