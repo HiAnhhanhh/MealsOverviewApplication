@@ -44,8 +44,8 @@ class DailyMealsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
         initObserve()
+        initView()
         initAction()
     }
     private fun initAction() {
@@ -92,6 +92,7 @@ class DailyMealsFragment : Fragment() {
         dailyMealsViewModel.getCategory()
         dailyMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             _dailyMealsAdapter.setData(data as ArrayList<CategoryModel>)
+            binding.shimmerViewContainer.isVisible = false
         }
 
         randomMealViewModel.getRandomMeal()
@@ -111,11 +112,13 @@ class DailyMealsFragment : Fragment() {
         binding.progressBar.isVisible = false
     }
     private fun initView() {
+        binding.shimmerViewContainer.startShimmer()
         val calendar: Calendar = Calendar.getInstance()
         val currentDate : String  = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.time)
         binding.tvDate.text = currentDate
         binding.recDailyMeal.layoutManager = LinearLayoutManager(context)
         binding.recDailyMeal.adapter = _dailyMealsAdapter
-
+        binding.recDailyMeal.isVisible = true
+        binding.shimmerViewContainer.stopShimmer()
     }
 }
