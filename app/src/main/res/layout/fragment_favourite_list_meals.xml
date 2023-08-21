@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray_1"
-    tools:context=".FavouriteListMealsFragment">
+    tools:context=".ui.favouritemeals.FavouriteListMealsFragment">
 
     <ImageView
         android:id="@+id/imgBackBtn"

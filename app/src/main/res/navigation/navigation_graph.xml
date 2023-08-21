@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dailyMealsFragment"
-        android:name="com.example.mealsoverviewapplication.DailyMealsFragment"
+        android:name="com.example.mealsoverviewapplication.ui.dailymeals.DailyMealsFragment"
         android:label="fragment_daily_meals"
         tools:layout="@layout/fragment_daily_meals" >
         <action
@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/favoriteListMealsFragment"
-        android:name="com.example.mealsoverviewapplication.FavouriteListMealsFragment"
+        android:name="com.example.mealsoverviewapplication.ui.favouritemeals.FavouriteListMealsFragment"
         android:label="fragment_favorite_list_meals"
         tools:layout="@layout/fragment_favourite_list_meals" >
         <action
@@ -35,12 +35,12 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.mealsoverviewapplication.ProfileFragment"
+        android:name="com.example.mealsoverviewapplication.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/viewDetailOfMealFragment"
-        android:name="com.example.mealsoverviewapplication.ViewDetailOfMealFragment"
+        android:name="com.example.mealsoverviewapplication.ui.viewdetailofmeal.ViewDetailOfMealFragment"
         android:label="fragment_view_detail_of_meal"
         tools:layout="@layout/fragment_view_detail_of_meal" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchMealsFragment"
-        android:name="com.example.mealsoverviewapplication.SearchMealsFragment"
+        android:name="com.example.mealsoverviewapplication.ui.searchmeals.SearchMealsFragment"
         android:label="fragment_search_meals"
         tools:layout="@layout/fragment_search_meals" >
         <action
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/listMealsFragment"
-        android:name="com.example.mealsoverviewapplication.ListMealsFragment"
+        android:name="com.example.mealsoverviewapplication.ui.listmeals.ListMealsFragment"
         android:label="fragment_list_meals"
         tools:layout="@layout/fragment_list_meals" >
 

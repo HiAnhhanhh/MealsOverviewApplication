@@ -6,7 +6,7 @@
     android:padding="10dp"
     android:background="@color/gray_1"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SearchMealsFragment">
+    tools:context=".ui.searchmeals.SearchMealsFragment">
 
     <EditText
         android:id="@+id/searchViewFilterMeal"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/preto"
-    tools:context=".DailyMealsFragment">
+    tools:context=".ui.dailymeals.DailyMealsFragment">
 
     <View
         android:id="@+id/view"
@@ -47,8 +47,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="@id/viewBackground"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
         app:layout_constraintStart_toStartOf="@id/viewBackground"
