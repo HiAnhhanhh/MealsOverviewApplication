@@ -42,14 +42,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/titleListMeals">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_15dp"
+            android:padding="@dimen/_10dp">
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listMealRec"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        android:visibility="gone"
         app:layout_constraintHeight_percent=".9"
         tools:listitem="@layout/item_daily_meal"
-        app:layout_constraintWidth_percent=".9"
-        android:layout_marginTop="20dp"
+        android:padding="@dimen/_15dp"
+        android:layout_marginTop="@dimen/_20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleListMeals" />

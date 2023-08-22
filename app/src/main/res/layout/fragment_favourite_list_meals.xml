@@ -44,22 +44,65 @@
         app:layout_constraintStart_toEndOf="@+id/imgBackBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="@dimen/_0dp"
-        android:layout_height="@dimen/_0dp"
-        app:layout_constraintWidth_percent=".9"
-        app:layout_constraintHeight_percent=".9"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/_20dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFavouriteView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/imv_logo">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favoriteRec"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_daily_meal"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_15dp"
+            android:orientation="vertical"
+            android:padding="@dimen/_10dp">
 
-    </androidx.core.widget.NestedScrollView>
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+            <include layout="@layout/list_item_shimmer" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoriteRec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imv_logo"
+        tools:listitem="@layout/item_daily_meal" />
+
+    <!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="@dimen/_0dp"-->
+<!--        android:layout_height="@dimen/_0dp"-->
+<!--        app:layout_constraintWidth_percent=".9"-->
+<!--        app:layout_constraintHeight_percent=".9"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        android:layout_marginTop="@dimen/_20dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imv_logo">-->
+<!--        -->
+<!--        -->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/favoriteRec"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            tools:listitem="@layout/item_daily_meal"/>-->
+
+<!--    </androidx.core.widget.NestedScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

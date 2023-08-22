@@ -92,7 +92,9 @@ class DailyMealsFragment : Fragment() {
         dailyMealsViewModel.getCategory()
         dailyMealsViewModel.responseLiveData.observe(viewLifecycleOwner) { data ->
             _dailyMealsAdapter.setData(data as ArrayList<CategoryModel>)
+            binding.shimmerViewContainer.stopShimmer()
             binding.shimmerViewContainer.isVisible = false
+            binding.tvSeeAll.isVisible = true
         }
 
         randomMealViewModel.getRandomMeal()
@@ -119,6 +121,5 @@ class DailyMealsFragment : Fragment() {
         binding.recDailyMeal.layoutManager = LinearLayoutManager(context)
         binding.recDailyMeal.adapter = _dailyMealsAdapter
         binding.recDailyMeal.isVisible = true
-        binding.shimmerViewContainer.stopShimmer()
     }
 }

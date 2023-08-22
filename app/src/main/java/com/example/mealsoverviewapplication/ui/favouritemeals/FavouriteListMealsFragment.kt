@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealsoverviewapplication.databinding.FragmentFavouriteListMealsBinding
@@ -53,8 +54,11 @@ class FavouriteListMealsFragment : Fragment() {
         })
     }
     private fun initView() {
+        binding.shimmerFavouriteView.isVisible = true
+        binding.shimmerFavouriteView.startShimmer()
         binding.favoriteRec.layoutManager = LinearLayoutManager(context)
         binding.favoriteRec.adapter = _favouriteAdapter
+        binding.favoriteRec.isVisible = true
     }
     private fun initData() {
         val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
@@ -70,6 +74,8 @@ class FavouriteListMealsFragment : Fragment() {
                     }
 //                    Log.d("check_null", "onDataChange: "+ favouriteListMeals)
                     _favouriteAdapter.setData(favouriteListMeals)
+                    binding.shimmerFavouriteView.stopShimmer()
+                    binding.shimmerFavouriteView.isVisible = false
                 }
             }
             override fun onCancelled(error: DatabaseError) {
