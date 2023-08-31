@@ -2,6 +2,7 @@ package com.example.mealsoverviewapplication.ui.dailymeals
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mealsoverviewapplication.R
@@ -14,7 +15,6 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
     private lateinit var mListener : OnItemClickListener
     interface OnItemClickListener {
         fun onItemClick (data: CategoryModel, position: Int)
-        fun onItemClickFavorite (data: CategoryModel, position: Int)
     }
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
@@ -35,11 +35,7 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
             binding.root.setOnClickListener {
                 listener.onItemClick(data,position)
             }
-
-            binding.imgFavorite.setOnClickListener {
-                binding.imgFavorite.setImageResource(R.drawable.baseline_favorite_red_24)
-                listener.onItemClickFavorite(data,position)
-            }
+            binding.imgFavorite.isVisible = false
         }
     }
 

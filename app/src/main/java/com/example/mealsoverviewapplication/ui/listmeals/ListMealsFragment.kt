@@ -1,6 +1,7 @@
 package com.example.mealsoverviewapplication.ui.listmeals
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -46,6 +47,11 @@ class ListMealsFragment : Fragment() {
         initObserver()
         initView()
         initAction()
+        setAnim()
+
+    }
+
+    private fun setAnim() {
 
     }
 

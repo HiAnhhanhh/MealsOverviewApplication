@@ -111,17 +111,18 @@
         app:drawableStartCompat="@drawable/baseline_access_time_24" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/makeItBtn"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_0dp"
-        android:backgroundTint="@color/amarelo"
-        android:drawableLeft="@drawable/chef_icon"
+        android:paddingStart="@dimen/_20dp"
+        android:paddingEnd="@dimen/_20dp"
+        android:background="@drawable/background_make_btn"
+        android:drawableStart="@drawable/chef_icon"
         android:text="@string/make_it_now"
         android:textColor="@color/black"
         android:textSize="@dimen/_18sp"
         android:textStyle="bold"
-        app:cornerRadius="@dimen/_50dp"
         app:layout_constraintEnd_toEndOf="@+id/shapeAbleImageView"
         app:layout_constraintHeight_percent=".07"
         app:layout_constraintStart_toStartOf="@+id/shapeAbleImageView"

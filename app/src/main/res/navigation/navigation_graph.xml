@@ -12,14 +12,25 @@
         tools:layout="@layout/fragment_daily_meals" >
         <action
             android:id="@+id/dailyMealsFragmentActionToViewDetailFragment"
-            app:destination="@id/viewDetailOfMealFragment" />
-
+            app:destination="@id/viewDetailOfMealFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"/>
         <action
             android:id="@+id/dailyMealsFragmentActionToSearchMealFragment"
-            app:destination="@+id/searchMealsFragment"/>
+            app:destination="@id/searchMealsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
         <action
             android:id="@+id/dailyMealsFragmentActionToListMealsFragment"
-            app:destination="@id/listMealsFragment" />
+            app:destination="@id/listMealsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/favoriteListMealsFragment"
@@ -28,7 +39,11 @@
         tools:layout="@layout/fragment_favourite_list_meals" >
         <action
             android:id="@+id/favoriteListMealsFragmentActionToViewDetailOfMealFragment"
-            app:destination="@id/viewDetailOfMealFragment" />
+            app:destination="@id/viewDetailOfMealFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
 
         <argument android:name="mealId"
             app:argType="string"/>
@@ -43,12 +58,14 @@
         android:name="com.example.mealsoverviewapplication.ui.viewdetailofmeal.ViewDetailOfMealFragment"
         android:label="fragment_view_detail_of_meal"
         tools:layout="@layout/fragment_view_detail_of_meal" >
+
         <action
             android:id="@+id/viewDetailOfMealFragmentActionToDailyMealsFragment"
-            app:destination="@id/dailyMealsFragment" />
+            app:destination="@id/dailyMealsFragment"/>
 
         <argument android:name="mealId"
             app:argType="string"/>
+
 
     </fragment>
     <fragment
@@ -58,7 +75,11 @@
         tools:layout="@layout/fragment_search_meals" >
         <action
             android:id="@+id/searchMealsFragmentActionToViewDetailOfMealFragment"
-            app:destination="@id/viewDetailOfMealFragment" />
+            app:destination="@id/viewDetailOfMealFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/listMealsFragment"
@@ -70,7 +91,19 @@
             app:argType="string"/>
         <action
             android:id="@+id/listMealsFragmentActionViewDetailOfMealFragment"
-            app:destination="@id/viewDetailOfMealFragment" />
+            app:destination="@id/viewDetailOfMealFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left"/>
+        <action
+            android:id="@+id/action_listMealsFragment_to_dailyMealsFragment"
+            app:destination="@id/dailyMealsFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
 
     </fragment>
+
 </navigation>

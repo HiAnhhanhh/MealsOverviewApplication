@@ -1,11 +1,15 @@
 package com.example.mealsoverviewapplication.ui.dailymeals
 
+import android.content.Context
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -22,7 +26,7 @@ import java.text.DateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class DailyMealsFragment : Fragment() {
+class DailyMealsFragment  : Fragment() {
 
     private val _dailyMealsAdapter by lazy {
         DailyMealsAdapter()
@@ -47,7 +51,15 @@ class DailyMealsFragment : Fragment() {
         initObserve()
         initView()
         initAction()
+        setAnim()
     }
+
+    private fun setAnim() {
+        val animationZoomIn = AnimationUtils.loadAnimation(context, R.anim.zoomin_btn)
+        binding.makeItBtn.startAnimation(animationZoomIn)
+
+    }
+
     private fun initAction() {
 
         _dailyMealsAdapter.setOnItemClickListener(object : DailyMealsAdapter.OnItemClickListener{
@@ -55,25 +67,6 @@ class DailyMealsFragment : Fragment() {
                 val category = data.strCategory.toString()
                 val direction = DailyMealsFragmentDirections.dailyMealsFragmentActionToListMealsFragment(category)
                 findNavController().navigate(direction)
-            }
-            override fun onItemClickFavorite(data: CategoryModel, position: Int) {
-                val check = "true"
-                val timeStamp = System.currentTimeMillis().toString()
-                val hashMap: HashMap<String, Any> = HashMap()
-                hashMap[Constants.STR_CATEGORY_ID] = data.categoryId.toString()
-                hashMap[Constants.STR_CATEGORY] = data.strCategory.toString()
-                hashMap[Constants.STR_CATEGORY_THUMB] = data.strCategoryThumb.toString()
-                hashMap[Constants.DESCRIPTION] = data.strCategoryDes.toString()
-                hashMap[Constants.TIMESTAMP] = timeStamp
-                hashMap[Constants.CHECK]= check
-
-                val ref: DatabaseReference = FirebaseDatabase.getInstance().getReference("FavouritesList")
-                ref.child(data.categoryId.toString()).setValue(hashMap)
-                    .addOnSuccessListener {
-                    }
-                    .addOnFailureListener { e ->
-                        Log.d("check_false", "insertData: "+ e.message)
-                    }
             }
         })
         binding.makeItBtn.setOnClickListener {
