@@ -29,7 +29,7 @@ class SearchMealsFragment : Fragment() {
     private val filterMealsViewModel by viewModels<FilterMealsViewModel>()
 
     private val filterMealsAdapter by lazy {
-        ListMealsAdapter()
+        FilterMealsAdapter()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

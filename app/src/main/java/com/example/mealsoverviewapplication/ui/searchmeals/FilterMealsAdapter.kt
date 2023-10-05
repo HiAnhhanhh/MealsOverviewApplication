@@ -1,5 +1,6 @@
-package com.example.mealsoverviewapplication.ui.listmeals
+package com.example.mealsoverviewapplication.ui.searchmeals
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
@@ -9,13 +10,14 @@ import com.example.mealsoverviewapplication.databinding.ItemDailyMealBinding
 import com.example.mealsoverviewapplication.data.mapper.MealDetailModel
 
 
-class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
+class FilterMealsAdapter : RecyclerView.Adapter<FilterMealsAdapter.ViewHolder>() {
     private var _listMealsArrayList : ArrayList<MealDetailModel> = arrayListOf()
     private lateinit var mListener : OnItemClickListener
 
     fun clearData(){
         _listMealsArrayList.clear()
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun setData (data: ArrayList<MealDetailModel>){
         _listMealsArrayList.clear()
         _listMealsArrayList.addAll(data)
