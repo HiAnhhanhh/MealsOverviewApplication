@@ -14,9 +14,7 @@ class FavouriteMealsAdapter  : RecyclerView.Adapter<FavouriteMealsAdapter.ViewHo
 
     private lateinit var mListener : OnItemClickListener
 
-    interface OnItemClickListener {
-        fun onItemClick (data: MealDetailModel, position: Int)
-    }
+
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
     }

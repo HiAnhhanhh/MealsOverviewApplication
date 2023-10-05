@@ -71,7 +71,7 @@ class SearchMealsFragment : Fragment() {
                 filterMealsList(s)
             }
         })
-        filterMealsAdapter.setOnItemClickListener(object : ListMealsAdapter.OnItemClickListener {
+        filterMealsAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(data: MealDetailModel, position: Int) {
                 val mealId = data.idMeal.toString()
                 val direction = SearchMealsFragmentDirections.searchMealsFragmentActionToViewDetailOfMealFragment(mealId)

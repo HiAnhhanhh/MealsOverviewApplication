@@ -13,8 +13,6 @@ import kotlinx.coroutines.launch
 class ViewMealDetailViewModel : ViewModel() {
     var responseLiveData : MutableLiveData<List<IngredientModel>?> = MutableLiveData()
     private set
-//    private var mealDetailState = MutableStateFlow<List<IngredientModel>?>(listOf())
-//    val mealDetailStateFlow = mealDetailState.asStateFlow()
 
     private val repository = Repositories()
     fun getViewMealDetail(mealId: String) {

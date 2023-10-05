@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mealsoverviewapplication.R
 import com.example.mealsoverviewapplication.databinding.FragmentFavouriteListMealsBinding
 import com.example.mealsoverviewapplication.data.mapper.MealDetailModel
 import com.google.firebase.database.*
@@ -45,7 +47,7 @@ class FavouriteListMealsFragment : Fragment() {
         binding.imgBackBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-        _favouriteAdapter.setOnItemClickListener(object : FavouriteMealsAdapter.OnItemClickListener{
+        _favouriteAdapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(data: MealDetailModel, position: Int) {
                 val mealId = data.idMeal.toString()
                 val direction = FavouriteListMealsFragmentDirections.favoriteListMealsFragmentActionToViewDetailOfMealFragment(mealId)
@@ -53,6 +55,7 @@ class FavouriteListMealsFragment : Fragment() {
             }
         })
     }
+
     private fun initView() {
         binding.shimmerFavouriteView.isVisible = true
         binding.shimmerFavouriteView.startShimmer()

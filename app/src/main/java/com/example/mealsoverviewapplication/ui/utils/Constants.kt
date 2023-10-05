@@ -6,6 +6,7 @@ object Constants {
     const val CHECK = "check"
     const val STR_MEAL = "strMeal"
     const val TIMESTAMP = "timestamp"
+    const val CHECK_LIFECYCLE = "check_Lifecycle"
     const val STR_CATEGORY_ID = "strCategoryId"
     const val STR_CATEGORY = "strCategory"
     const val STR_CATEGORY_THUMB = "strCategoryThumb"

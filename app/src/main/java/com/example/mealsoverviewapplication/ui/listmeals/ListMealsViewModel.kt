@@ -15,14 +15,6 @@ class ListMealsViewModel : ViewModel() {
     val responseLiveData : MutableLiveData<List<MealDetailModel>?> = MutableLiveData()
     private val repository = Repositories()
 
-//    fun onFavoriteItem(id: String) {
-//        val oldData = responseLiveData
-//        oldData.map { item ->
-//            //call api doi state // update lai trong database
-//            //
-//        }
-//    }
-
     fun getListMeals (category: String){
         viewModelScope.launch {
             repository.getListMeals(category)

@@ -22,13 +22,7 @@ class ListMealsAdapter : RecyclerView.Adapter<ListMealsAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    interface OnItemClickListener {
-        fun onItemClick (data: MealDetailModel, position: Int)
-        fun onClickFavorite(data: MealDetailModel, position: Int)
-        fun onClickAddedFavorite(data: MealDetailModel, position: Int)
-    }
-
-    fun setOnItemClickListener (listener: OnItemClickListener){
+    fun setOnItemClickListener (listener: com.example.mealsoverviewapplication.ui.searchmeals.OnItemClickListener){
         mListener = listener
     }
 

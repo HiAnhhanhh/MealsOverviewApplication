@@ -13,9 +13,7 @@ class DailyMealsAdapter : RecyclerView.Adapter<DailyMealsAdapter.ViewHolder>() {
 
     private val _dailyMealsArrayList: ArrayList<CategoryModel> = arrayListOf()
     private lateinit var mListener : OnItemClickListener
-    interface OnItemClickListener {
-        fun onItemClick (data: CategoryModel, position: Int)
-    }
+
     fun setOnItemClickListener(listener: OnItemClickListener){
         mListener = listener
     }
